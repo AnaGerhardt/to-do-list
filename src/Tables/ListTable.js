@@ -1,6 +1,7 @@
 import React from 'react'
 
-<div className="flex-row margin-top">
+const ListTable = props => (
+
     <table className="striped-table">
         <thead>
             <tr>
@@ -9,14 +10,17 @@ import React from 'react'
         </thead>
         <tbody>
             <tr>
-             <td>Wash clothes</td>
+                <td><input type="checkbox"></input>Wash clothes</td>
             </tr>
             <tr>
-             <td>Bring pets to the vet</td>
+                <td>Bring pets to the vet</td>
             </tr>
             <tr>
-              <td>Deposit money</td>
+                <td>Deposit money</td>
             </tr>
         </tbody>
     </table>
-</div>
+
+)
+
+export default ListTable

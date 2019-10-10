@@ -255,7 +255,9 @@ textarea {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
-  /* 2 */ }
+  /* 2 */ 
+  margin-right: 2rem;
+  /* custom adjustment for this project */}
 
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
