@@ -9,15 +9,17 @@ const ListTable = props => (
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><input type="checkbox"></input>Wash clothes</td>
-            </tr>
-            <tr>
-                <td>Bring pets to the vet</td>
-            </tr>
-            <tr>
-                <td>Deposit money</td>
-            </tr>
+            {props.list.length > 0 ? (
+               props.list.map(item => (       
+                <tr key={item.id}>
+                    <td><input type="checkbox"></input>{item.listitem}</td>
+                </tr>
+               ))
+            ) : (
+                <tr>
+                    <td>No items yet.</td>
+                </tr>
+            )}
         </tbody>
     </table>
 

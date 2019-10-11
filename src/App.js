@@ -10,15 +10,20 @@ const App = () => {
     { id: 3, text: 'Deposit money' },
   ]
 
-  const initialFormState = { id: '', text: '' }
+  const initialFormState = { id: null, text: '' }
   const [list, setList] = useState(listData)
+
+  const addItem = item => {
+    item.id = list.length + 1
+    setList([...list, item])
+  }
 
   return (
     <div className="container">
 
       <div className="flex-row">
         <div className="flex-large">
-          <AddForm />
+          <AddForm addItem={addItem} />
         </div>
       </div>
 
