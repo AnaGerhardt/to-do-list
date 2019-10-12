@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const AddForm = props => {
 
-    const initialFormState = { id: '', text: '' }
+    const initialFormState = { id: null, listitem: '' }
     const [item, setItem] = useState(initialFormState)
 
     const handleInputChange = event => {
@@ -11,12 +11,19 @@ const AddForm = props => {
     }
 
     return  (
-        <form>
+        <form
+            onSubmit={event => {
+                event.preventDefault()
+                if (!item.listitem) return
+                 props.addItem(item)
+                 setItem(initialFormState)
+            }}
+        >
             <h2>My "To Do" List</h2>
             <label>Add a new item</label>
             <input 
                 type="text" 
-                name="item" 
+                name="listitem" 
                 value={item.listitem}
                 onChange={handleInputChange}
             >
