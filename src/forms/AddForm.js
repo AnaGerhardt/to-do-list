@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const AddForm = props => {
 
-    const initialFormState = { id: null, listitem: '' }
+    const initialFormState = { id: null, ischecked: false, listitem: '' }
     const [item, setItem] = useState(initialFormState)
 
     const handleInputChange = event => {
@@ -14,9 +14,9 @@ const AddForm = props => {
         <form
             onSubmit={event => {
                 event.preventDefault()
-                if (!item.listitem) return
-                 props.addItem(item)
-                 setItem(initialFormState)
+                if (!item.listitem) return 
+                    props.addItem(item)
+                    setItem(initialFormState)
             }}
         >
             <h2>My "To Do" List</h2>

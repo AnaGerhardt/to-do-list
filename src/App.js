@@ -10,7 +10,6 @@ const App = () => {
     { id: 3, listitem: 'Deposit money' },
   ]
 
-  //const initialFormState = { id: null, text: '' }
   const [list, setList] = useState(listData)
 
   const addItem = item => {
@@ -22,9 +21,6 @@ const App = () => {
     setList(list.filter(item => item.id !== id))
   }
 
-  const deleteAll = props => {
-    setList(list.filter(item => item.checked !== item.id))
-  }
 
   return (
     <div className="container">
@@ -45,7 +41,6 @@ const App = () => {
         <div className="flex-large">
           <button 
            className="button muted-button"
-           onClick={() => deleteAll()}
           >
             Delete All Checked
           </button>

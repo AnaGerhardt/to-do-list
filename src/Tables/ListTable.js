@@ -1,7 +1,9 @@
 import React from 'react'
+import Checkbox from '../Checkbox'
 
-const ListTable = props => (
+const ListTable = props => {
 
+    return (
     <table className="striped-table">
         <thead>
             <tr>
@@ -10,9 +12,11 @@ const ListTable = props => (
         </thead>
         <tbody>
             {props.list.length > 0 ? (
-               props.list.map(item => (       
+               props.list.map(item => (      
                 <tr key={item.id}>
-                <td><input type="checkbox" checked={item.checked}></input>{item.listitem}</td>
+                <td><Checkbox />
+                    {item.listitem}
+                </td>
                     <td>
                         <button 
                             className="button muted-button"
@@ -30,7 +34,7 @@ const ListTable = props => (
             )}
         </tbody>
     </table>
-
-)
+    )
+}
 
 export default ListTable
