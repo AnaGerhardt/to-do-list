@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const AddForm = props => {
 
-    const initialFormState = { id: null, ischecked: false, listitem: '' }
+    const initialFormState = { id: null, listitem: '' }
     const [item, setItem] = useState(initialFormState)
 
     const handleInputChange = event => {

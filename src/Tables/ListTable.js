@@ -1,7 +1,13 @@
-import React from 'react'
-import Checkbox from '../Checkbox'
+import React, { useState } from 'react'
 
 const ListTable = props => {
+
+    const [isChecked, setChecked] = useState(true);
+
+    const toggleChange = item => { 
+        item.id = setChecked (!isChecked)
+        console.log (isChecked)
+    }
 
     return (
     <table className="striped-table">
@@ -14,7 +20,11 @@ const ListTable = props => {
             {props.list.length > 0 ? (
                props.list.map(item => (      
                 <tr key={item.id}>
-                <td><Checkbox />
+                <td><input
+                        type="checkbox"
+                        checked={item.isChecked}
+                        onChange={toggleChange}
+                    />
                     {item.listitem}
                 </td>
                     <td>
