@@ -1,13 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const ListTable = props => {
-
-    const [isChecked, setChecked] = useState(true);
-
-    const toggleChange = item => { 
-        item.id = setChecked (!isChecked)
-        console.log (isChecked)
-    }
 
     return (
     <table className="striped-table">
@@ -22,15 +15,18 @@ const ListTable = props => {
                 <tr key={item.id}>
                 <td><input
                         type="checkbox"
-                        checked={item.isChecked}
-                        onChange={toggleChange}
+                        onChange={ev => {
+                            const { checked } = ev.currentTarget;
+                            item.checked = { checked }
+                        }}
+                        value={item.checked}
                     />
                     {item.listitem}
                 </td>
                     <td>
                         <button 
                             className="button muted-button"
-                            onClick={() => props.deleteItem(item.id)}
+                            onClick={() => props.deleteItem(item.id)}                          
                         >
                             Delete
                         </button>

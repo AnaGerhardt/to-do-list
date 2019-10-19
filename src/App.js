@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import AddForm from './forms/AddForm'
-import ListTable from './tables/ListTable'
+import ListTable from './Tables/ListTable'
 
 const App = () => {
 
   const listData = [
     { id: 1, listitem: 'Wash clothes' },
-    { id: 2, listitem: 'Bring pets to the vet' },
+    { id: 2, listitem: 'Take pets to the vet' },
     { id: 3, listitem: 'Deposit money' },
   ]
 
@@ -19,6 +19,10 @@ const App = () => {
 
   const deleteItem = id => {
     setList(list.filter(item => item.id !== id))
+  }
+  
+  const deleteAllChecked = () => {
+    setList(list.filter(item => !item.checked))
   }
 
 
@@ -41,6 +45,7 @@ const App = () => {
         <div className="flex-large">
           <button 
            className="button muted-button"
+           onClick={deleteAllChecked}
           >
             Delete All Checked
           </button>
