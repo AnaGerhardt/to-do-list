@@ -15,6 +15,7 @@ const ListTable = props => {
                 <tr key={item.id}>
                 <td><input
                         type="checkbox"
+                        name={item.id}
                         onChange={ev => {
                             item.checked = ev.currentTarget.checked
                         }}
