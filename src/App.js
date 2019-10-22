@@ -11,6 +11,7 @@ const App = () => {
   ]
 
   const [list, setList] = useState(listData)
+  const [theme, setTheme] = useState(true)
 
   const addItem = item => {
     item.id = list.length + 1
@@ -25,9 +26,28 @@ const App = () => {
     setList(list.filter(item => !item.checked))
   }
 
+  const changeTheme = () => {
+    setTheme(!theme)
+    theme ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme') 
+  }
+
 
   return (
     <div className="container">
+
+      <div className="flex-row">
+        <div className="flex-large">
+           <h2 className={theme ? null : "dark-theme"}>My "To Do" List</h2>
+        </div>
+        <div className="flex-large">
+          <div 
+            className={'button muted-button float-right margin-top-small'}
+            onClick={changeTheme}
+          >
+            {theme ? 'Night Mode' : 'Light Mode'}
+          </div>
+        </div>
+      </div>
 
       <div className="flex-row">
         <div className="flex-large">
@@ -37,7 +57,7 @@ const App = () => {
 
       <div className="flex-row margin-top">
         <div className="flex-large">
-         <ListTable list={list} deleteItem={deleteItem} />
+         <ListTable list={list} theme={theme} deleteItem={deleteItem} />
         </div>
       </div>
 

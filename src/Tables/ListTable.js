@@ -3,7 +3,7 @@ import React from 'react'
 const ListTable = props => {
 
     return (
-    <table className="striped-table">
+    <table className={props.theme ? "striped-table" : null}>
         <thead>
             <tr>
              <th>List</th>
@@ -16,8 +16,7 @@ const ListTable = props => {
                 <td><input
                         type="checkbox"
                         onChange={ev => {
-                            const { checked } = ev.currentTarget;
-                            item.checked = { checked }
+                            item.checked = ev.currentTarget.checked
                         }}
                         value={item.checked}
                     />

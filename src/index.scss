@@ -32,7 +32,7 @@
  * Remove the margin in all browsers.
  */
 body {
-  margin: 0; }
+  margin: 0 }
 
 /**
  * Render the `main` element consistently in IE.
@@ -340,6 +340,12 @@ html {
   font: normal normal normal 1rem/1.6 -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 1rem; }
 
+/* Different color theme */
+.dark-theme {
+  background: #505050;
+  color: white;  
+}
+
 body {
   color: #404040;
   background: white;
@@ -489,7 +495,7 @@ dd {
   max-width: 1200px;
   padding: 0 1rem;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;}
 
 .small-container {
   max-width: 800px; }
@@ -614,6 +620,9 @@ dd {
 
 .margin-top {
   margin-top: 2rem; }
+
+.margin-top-small {
+  margin-top: 1.5em !important }
 
 .margin-bottom {
   margin-bottom: 2rem; }

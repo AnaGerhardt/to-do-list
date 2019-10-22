@@ -19,7 +19,6 @@ const AddForm = props => {
                     setItem(initialFormState)
             }}
         >
-            <h2>My "To Do" List</h2>
             <label>Add a new item</label>
             <input 
                 type="text" 
