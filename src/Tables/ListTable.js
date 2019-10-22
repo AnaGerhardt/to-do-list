@@ -15,8 +15,22 @@ const ListTable = props => {
                 <tr key={item.id}>
                 <td><input
                         type="checkbox"
+                        name={item.id}
                         onChange={ev => {
+<<<<<<< HEAD
                             item.checked = ev.currentTarget.checked
+=======
+
+                            // Isso é um atalho para fazer as 2 linhas comentadas de baixo ao mesmo tempo
+                            const { checked, name } = ev.currentTarget;
+                            //const checked = ev.currentTarget.checked;
+                            //const name = ev.currentTarget.name;
+                            console.log('name', name); // vc pode usar o console.log
+                            console.log('checked', checked); // vc pode usar o console.log
+                            item.checked = checked; // aqui não precisa do {}, ele entende q foram criadas 2 variaveis: checked e name. Se vc usar o { checked } ele vai criar um objeto com {checked: valorDaVariavelChecked}
+
+                            console.log('item alterado', item); // vc pode usar o console.log
+>>>>>>> abcd186ac62b912f4f04e4c134c3ff16918c8219
                         }}
                         value={item.checked}
                     />
