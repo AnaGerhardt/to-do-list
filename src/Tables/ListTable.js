@@ -26,7 +26,8 @@ const ListTable = props => {
                     <td>
                         <button 
                             className="button muted-button"
-                            onClick={() => props.deleteItem(item.id)}                          
+                            onClick={() => props.deleteItem(item.id)} 
+                            style={props.theme ? null : {color: 'white'}}                         
                         >
                             Delete
                         </button>

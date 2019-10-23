@@ -28,7 +28,7 @@ const App = () => {
 
   const changeTheme = () => {
     setTheme(!theme)
-    theme ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme') 
+    theme ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme')  
   }
 
 
@@ -42,6 +42,7 @@ const App = () => {
         <div className="flex-large">
           <div 
             className={'button muted-button float-right margin-top-small'}
+            style={theme ? null : {color: 'white'}}
             onClick={changeTheme}
           >
             {theme ? 'Night Mode' : 'Light Mode'}
@@ -51,7 +52,7 @@ const App = () => {
 
       <div className="flex-row">
         <div className="flex-large">
-          <AddForm addItem={addItem} />
+          <AddForm addItem={addItem} theme={theme} />
         </div>
       </div>
 
@@ -66,6 +67,7 @@ const App = () => {
           <button 
            className="button muted-button"
            onClick={deleteAllChecked}
+           style={theme ? null : {color: 'white'}}
           >
             Delete All Checked
           </button>
