@@ -31,6 +31,16 @@ const App = () => {
     theme ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme')  
   }
 
+  const checkHandler = id => {
+    setList(
+      list.map (item => {
+        if (item.id === id) {
+          item.checked = !item.checked
+        }
+        return item
+      })
+    )
+  }
 
   return (
     <div className="container">
@@ -42,7 +52,6 @@ const App = () => {
         <div className="flex-large">
           <div 
             className={'button muted-button float-right margin-top-small'}
-            style={theme ? null : {color: 'white'}}
             onClick={changeTheme}
           >
             {theme ? 'Night Mode' : 'Light Mode'}
@@ -58,7 +67,7 @@ const App = () => {
 
       <div className="flex-row margin-top">
         <div className="flex-large">
-         <ListTable list={list} theme={theme} deleteItem={deleteItem} />
+         <ListTable list={list} theme={theme} deleteItem={deleteItem} checkHandler={checkHandler} />
         </div>
       </div>
 
@@ -67,7 +76,6 @@ const App = () => {
           <button 
            className="button muted-button"
            onClick={deleteAllChecked}
-           style={theme ? null : {color: 'white'}}
           >
             Delete All Checked
           </button>

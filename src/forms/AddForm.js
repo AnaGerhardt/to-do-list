@@ -29,7 +29,6 @@ const AddForm = props => {
             </input>
             <button 
                 className="muted-button"
-                style={props.theme ? null : {color: 'white'}}
             >
                 Done!
             </button>

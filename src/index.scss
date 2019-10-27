@@ -340,16 +340,25 @@ html {
   font: normal normal normal 1rem/1.6 -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 1rem; }
 
+.completed {
+  text-decoration: line-through }
+
 /* Different color theme */
 .dark-theme {
   background: #505050;
-  color: white;  
-}
+  color: white; }
 
 body {
   color: #404040;
   background: white;
-  font-size: 1rem; }
+  font-size: 1rem; 
+
+  &.dark-theme {
+    .muted-button {
+      color: #fff;
+    }
+  }
+}
 
 p,
 ol,
