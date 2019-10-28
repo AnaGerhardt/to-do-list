@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import AddForm from './forms/AddForm'
+import EditForm from './forms/EditForm'
 import ListTable from './Tables/ListTable'
 
 const App = () => {
@@ -10,8 +11,12 @@ const App = () => {
     { id: 3, listitem: 'Deposit money' },
   ]
 
+  const initialFormState = { id: null, name: '' }
+
   const [list, setList] = useState(listData)
   const [theme, setTheme] = useState(true)
+  const [editing, setEditing] = useState(false)
+  const [currentItem, setCurrentItem] = useState(initialFormState)
 
   const addItem = item => {
     item.id = list.length + 1
@@ -20,6 +25,16 @@ const App = () => {
 
   const deleteItem = id => {
     setList(list.filter(item => item.id !== id))
+  }
+
+  const editRow = item => {
+    setEditing(true)
+    setCurrentItem({ id: item.id, name: item.listitem })
+  }
+
+  const updateItem = (id, updatedItem) => {
+    setEditing(false)
+    setList(list.map(item => (item.id === id ? updatedItem : item)))
   }
   
   const deleteAllChecked = () => {
@@ -61,13 +76,17 @@ const App = () => {
 
       <div className="flex-row">
         <div className="flex-large">
-          <AddForm addItem={addItem} theme={theme} />
+          {editing ? 
+            (<EditForm editing={editing} setEditing={setEditing} updateItem={updateItem} currentItem={currentItem} />) 
+            : 
+            (<AddForm addItem={addItem} />)
+          }
         </div>
       </div>
 
       <div className="flex-row margin-top">
         <div className="flex-large">
-         <ListTable list={list} theme={theme} deleteItem={deleteItem} checkHandler={checkHandler} />
+         <ListTable list={list} deleteItem={deleteItem} editRow={editRow} checkHandler={checkHandler} />
         </div>
       </div>
 

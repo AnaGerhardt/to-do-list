@@ -23,14 +23,21 @@ const ListTable = props => {
                     />
                     {item.listitem}
                 </td>
-                    <td>
-                        <button 
-                            className="button muted-button"
-                            onClick={() => props.deleteItem(item.id)}                        
-                        >
-                            Delete
-                        </button>
-                    </td>
+                <td>
+                     <button 
+                        className="button muted-button"
+                        onClick={() => props.deleteItem(item.id)} 
+                        style={{'marginLeft': '0.5em'}}                       
+                    >
+                        Delete
+                    </button>
+                    <button 
+                        className="button muted-button"
+                        onClick={() => {props.editRow(item)}}                        
+                    >
+                        Edit
+                    </button>
+                </td>
                 </tr>
                ))
             ) : (
