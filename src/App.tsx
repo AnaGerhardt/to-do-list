@@ -1,7 +1,15 @@
-import React, { useState } from 'react'
+import * as React from 'react'
+import { useState } from 'react'
 import AddForm from './forms/AddForm'
 import EditForm from './forms/EditForm'
 import ListTable from './Tables/ListTable'
+
+
+interface List {
+  id: number
+  checked: boolean
+  listitem: string
+}
 
 const App = () => {
 
@@ -18,16 +26,16 @@ const App = () => {
   const [editing, setEditing] = useState(false)
   const [currentItem, setCurrentItem] = useState(initialFormState)
 
-  const addItem = item => {
+  const addItem = (item: List) => {
     item.id = list.length + 1
     setList([...list, item])
   }
 
-  const deleteItem = id => {
-    setList(list.filter(item => item.id !== id))
+  const deleteItem = ({id}: List) => {
+    setList(list.filter((item: List) => item.id !== id))
   }
 
-  const editRow = item => {
+  const editRow = (item: List) => {
     setEditing(true)
     setCurrentItem({ id: item.id, name: item.listitem })
   }
@@ -46,7 +54,7 @@ const App = () => {
     theme ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme')  
   }
 
-  const checkHandler = id => {
+  const checkHandler = ({id}:List) => {
     setList(
       list.map (item => {
         if (item.id === id) {
