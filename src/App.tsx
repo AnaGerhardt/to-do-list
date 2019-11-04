@@ -1,46 +1,44 @@
 import * as React from 'react'
 import { useState } from 'react'
-import AddForm from './forms/AddForm'
-import EditForm from './forms/EditForm'
+import AddForm from './Forms/AddForm'
+import EditForm from './Forms/EditForm'
 import ListTable from './Tables/ListTable'
 
 
 interface List {
-  id: number
-  checked: boolean
-  listitem: string
+  id?: number
+  checked?: boolean
+  listitem?: string
 }
 
 const App = () => {
 
-  const listData = [
+  const listData: { id?: number, checked?: boolean, listitem?: string }[] = [
     { id: 1, listitem: 'Wash clothes' },
     { id: 2, listitem: 'Take pets to the vet' },
     { id: 3, listitem: 'Deposit money' },
   ]
 
-  const initialFormState = { id: null, name: '' }
-
   const [list, setList] = useState(listData)
   const [theme, setTheme] = useState(true)
   const [editing, setEditing] = useState(false)
-  const [currentItem, setCurrentItem] = useState(initialFormState)
+  const [currentItem, setCurrentItem] = useState()
 
   const addItem = (item: List) => {
     item.id = list.length + 1
     setList([...list, item])
   }
 
-  const deleteItem = ({id}: List) => {
+  const deleteItem = (id: List) => {
     setList(list.filter((item: List) => item.id !== id))
   }
 
   const editRow = (item: List) => {
     setEditing(true)
-    setCurrentItem({ id: item.id, name: item.listitem })
+    setCurrentItem({ id: item.id, listitem: item.listitem })
   }
 
-  const updateItem = (id, updatedItem) => {
+  const updateItem = (id: List, updatedItem: List) => {
     setEditing(false)
     setList(list.map(item => (item.id === id ? updatedItem : item)))
   }
@@ -54,7 +52,7 @@ const App = () => {
     theme ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme')  
   }
 
-  const checkHandler = ({id}:List) => {
+  const checkHandler = (id: List) => {
     setList(
       list.map (item => {
         if (item.id === id) {
@@ -70,7 +68,7 @@ const App = () => {
 
       <div className="flex-row">
         <div className="flex-large">
-           <h2 className={theme ? null : "dark-theme"}>My "To Do" List</h2>
+           <h2 className={theme ? undefined : "dark-theme"}>My "To Do" List</h2>
         </div>
         <div className="flex-large">
           <div 
