@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import AddForm from './Forms/AddForm'
 import EditForm from './Forms/EditForm'
 import ListTable from './Tables/ListTable'
@@ -16,9 +15,9 @@ export interface Item {
 const App = () => {
 
   const itemArray = [
-    { id: 1, Itemitem: 'Wash clothes' },
-    { id: 2, Itemitem: 'Take pets to the vet' },
-    { id: 3, Itemitem: 'Deposit money' },
+    { id: 1, listitem: 'Wash clothes' },
+    { id: 2, listitem: 'Take pets to the vet' },
+    { id: 3, listitem: 'Deposit money' },
   ]
 
   const [list, setList] = useState<Item[]>(itemArray)
@@ -37,7 +36,7 @@ const App = () => {
 
   const editRow = (item: Item) => {
     setEditing(true)
-    setCurrentItem({ id: item.id, Itemitem: item.listitem })
+    setCurrentItem({ id: item.id, checked: item.checked, listitem: item.listitem })
   }
 
   const updateItem = (id: Item, updatedItem: Item) => {

@@ -13,7 +13,6 @@ interface IProps {
 
 const ListTable = (props: Item & IProps) => {
 
-
     return (
     <table className={props.theme ? "striped-table" : undefined}>
         <thead>

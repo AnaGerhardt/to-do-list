@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { DateInput } from "@blueprintjs/datetime";
 
 interface IProps {
     addItem: Function
@@ -7,7 +7,7 @@ interface IProps {
 
 const AddForm = (props: IProps) => {
 
-    const initialFormState = { id: null, listitem: '' }
+    const initialFormState = { id: undefined, listitem: '' }
     const [item, setItem] = useState(initialFormState)
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +30,15 @@ const AddForm = (props: IProps) => {
                 name="listitem" 
                 value={item.listitem}
                 onChange={handleInputChange}
+                style={{'width': '50%'}}
             >
             </input>
+            <DateInput 
+                formatDate={date => date.toLocaleString()}
+                parseDate={str => new Date(str)}
+                placeholder={"Select a date (optional)"}     
+            />
+            <br />
             <button 
                 className="muted-button"
             >

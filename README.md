@@ -1,3 +1,17 @@
+# To Do List
+
+# Introduction
+
+Hi! This project was created to study React in steps, from the very basic to more advanced features. 
+
+## Stack
+
+- Reactjs + Hooks
+- Typescript
+- UI React Toolkit `Blueprint` 
+
+# Create-react-app
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

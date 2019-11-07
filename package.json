@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@blueprintjs/core": "^3.19.1",
+    "@blueprintjs/datetime": "^3.14.0",
     "@types/jest": "^24.0.21",
     "@types/node": "^12.12.5",
     "@types/react": "^16.9.11",
