@@ -1,14 +1,17 @@
 import * as React from 'react'
 import { useState } from 'react'
 
+interface IProps {
+    addItem: Function
+}
 
-const AddForm = props => {
+const AddForm = (props: IProps) => {
 
     const initialFormState = { id: null, listitem: '' }
     const [item, setItem] = useState(initialFormState)
 
-    const handleInputChange = event => {
-        const { name, value } = event.target
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target
         setItem({ ...item, [name]: value })
     }
 

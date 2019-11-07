@@ -1,9 +1,21 @@
 import React from 'react'
+import { Item } from '../App'
 
-const ListTable = props => {
+
+interface IProps {
+    list: Item[]
+    theme?: boolean
+    checkHandler: Function
+    editRow: Function
+    deleteItem: Function
+    map?: Function
+  }
+
+const ListTable = (props: Item & IProps) => {
+
 
     return (
-    <table className={props.theme ? "striped-table" : null}>
+    <table className={props.theme ? "striped-table" : undefined}>
         <thead>
             <tr>
              <th>List</th>
@@ -15,7 +27,7 @@ const ListTable = props => {
                 <tr key={item.id} className={item.checked ? 'completed' : ''}>
                 <td><input
                         type="checkbox"
-                        name={item.id}
+                        //name={item.id}
                         onChange={ev => {
                             item.checked = ev.currentTarget.checked
                         }}

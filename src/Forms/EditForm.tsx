@@ -1,12 +1,21 @@
 import * as React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Dispatch, SetStateAction } from 'react'
+import { Item } from '../App'
 
-const EditForm = props => {
+
+interface IProps {
+    currentItem: Item
+    updateItem: Function
+    setEditing: Dispatch<SetStateAction<boolean>>
+    editing: boolean
+}
+
+const EditForm = (props: IProps) => {
 
     const [item, setItem] = useState(props.currentItem)
 
-    const handleInputChange = event => {
-        const { name, value } = event.target
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target
         setItem({ ...item, [name]: value })
     }
 
