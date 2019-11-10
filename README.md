@@ -8,7 +8,8 @@ Hi! This project was created to study React in steps, from the very basic to mor
 
 - Reactjs + Hooks
 - Typescript
-- UI React Toolkit `Blueprint` 
+- UI React Toolkit `Ant Design` 
+- Styled-components
 
 # Create-react-app
 
