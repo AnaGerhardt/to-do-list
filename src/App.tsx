@@ -65,7 +65,7 @@ const App = () => {
   }
 
   return (
-    <div className="container">
+    <div className='container'>
 
       <div className="flex-row">
         <div className="flex-large">

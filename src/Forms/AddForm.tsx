@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
-import { DateInput } from "@blueprintjs/datetime";
+import { DatePicker } from 'antd'
+import styled from 'styled-components'
+
+const Button = styled.button`
+  text-align: center;
+  color: grey;
+`;
 
 interface IProps {
     addItem: Function
@@ -9,6 +15,7 @@ const AddForm = (props: IProps) => {
 
     const initialFormState = { id: undefined, listitem: '' }
     const [item, setItem] = useState(initialFormState)
+    const [startDate, setStartDate] = useState()
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -16,6 +23,7 @@ const AddForm = (props: IProps) => {
     }
 
     return  (
+
         <form
             onSubmit={event => {
                 event.preventDefault()
@@ -33,17 +41,18 @@ const AddForm = (props: IProps) => {
                 style={{'width': '50%'}}
             >
             </input>
-            <DateInput 
-                formatDate={date => date.toLocaleString()}
-                parseDate={str => new Date(str)}
-                placeholder={"Select a date (optional)"}     
+            <br />
+            <DatePicker 
+                showTime 
+                placeholder="Select date (optional)"
+                onChange={value => setStartDate(value)} 
+                onOk={value => setStartDate(value)} 
             />
             <br />
-            <button 
-                className="muted-button"
+            <Button 
             >
                 Done!
-            </button>
+            </Button>
         </form>
     )       
 }
