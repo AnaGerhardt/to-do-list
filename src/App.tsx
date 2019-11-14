@@ -1,8 +1,19 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
+import { Row, Col, Button } from 'antd'
 import AddForm from './Forms/AddForm'
 import EditForm from './Forms/EditForm'
 import ListTable from './Tables/ListTable'
 
+
+const Container = styled.div`
+  margin: 10vh 10vw 10vh 10vw;
+  padding: 20px;
+  border-style: solid;
+  border-color: #AAAA;
+  border-width: 1px;
+  border-radius: 5px;
+`
 
 export interface Item {
   id?: number
@@ -65,50 +76,50 @@ const App = () => {
   }
 
   return (
-    <div className='container'>
+    <Container>
 
-      <div className="flex-row">
-        <div className="flex-large">
-           <h2 className={theme ? undefined : "dark-theme"}>My "To Do" Item</h2>
-        </div>
-        <div className="flex-large">
-          <div 
-            className={'button muted-button float-right margin-top-small'}
+      <Row>
+        <Col span={12}>
+           <h2>My "To Do" List</h2>
+        </Col>
+        <Col span={12} style={{'textAlign':'right'}}>
+          <Button
             onClick={changeTheme}
           >
             {theme ? 'Night Mode' : 'Light Mode'}
-          </div>
-        </div>
-      </div>
+          </Button>
+        </Col>
+      </Row>
 
-      <div className="flex-row">
-        <div className="flex-large">
+      <br />
+
+      <Row>
+        <Col>
           {editing ? 
             (<EditForm editing={editing} setEditing={setEditing} updateItem={updateItem} currentItem={currentItem} />) 
             : 
             (<AddForm addItem={addItem} />)
           }
-        </div>
-      </div>
+        </Col>
+      </Row>
 
-      <div className="flex-row margin-top">
-        <div className="flex-large">
+      <Row>
+        <Col>
          <ListTable list={list} deleteItem={deleteItem} editRow={editRow} checkHandler={checkHandler} />
-        </div>
-      </div>
+        </Col>
+      </Row>
 
-      <div className="flex-row">
-        <div className="flex-large">
-          <button 
-           className="button muted-button"
+      <Row>
+        <Col>
+          <Button
            onClick={deleteAllChecked}
           >
             Delete All Checked
-          </button>
-        </div>
-      </div>
+          </Button>
+        </Col>
+      </Row>
 
-    </div>
+    </Container>
   );
 }
 

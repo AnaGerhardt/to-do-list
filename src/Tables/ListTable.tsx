@@ -1,6 +1,12 @@
 import React from 'react'
 import { Item } from '../App'
+import { Button } from 'antd'
+import styled from 'styled-components'
 
+
+const Table = styled.table`
+   margin: 40px 0 40px 0; 
+` 
 
 interface IProps {
     list: Item[]
@@ -14,7 +20,7 @@ interface IProps {
 const ListTable = (props: Item & IProps) => {
 
     return (
-    <table className={props.theme ? "striped-table" : undefined}>
+    <Table>
         <thead>
             <tr>
              <th>List</th>
@@ -35,19 +41,17 @@ const ListTable = (props: Item & IProps) => {
                     {item.listitem}
                 </td>
                 <td>
-                     <button 
-                        className="button muted-button"
+                     <Button 
                         onClick={() => props.deleteItem(item.id)} 
                         style={{'marginLeft': '0.5em'}}                       
                     >
                         Delete
-                    </button>
-                    <button 
-                        className="button muted-button"
+                    </Button>
+                    <Button 
                         onClick={() => {props.editRow(item)}}                        
                     >
                         Edit
-                    </button>
+                    </Button>
                 </td>
                 </tr>
                ))
@@ -57,7 +61,7 @@ const ListTable = (props: Item & IProps) => {
                 </tr>
             )}
         </tbody>
-    </table>
+    </Table>
     )
 }
 

@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
-import { DatePicker } from 'antd'
-import styled from 'styled-components'
+import { Form, Input, Button, DatePicker } from 'antd'
+import moment from 'moment'
 
-const Button = styled.button`
-  text-align: center;
-  color: grey;
-`;
 
 interface IProps {
     addItem: Function
@@ -15,45 +11,50 @@ const AddForm = (props: IProps) => {
 
     const initialFormState = { id: undefined, listitem: '' }
     const [item, setItem] = useState(initialFormState)
-    const [startDate, setStartDate] = useState()
+    //const [dateField, setDateField] = useState()
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setItem({ ...item, [name]: value })
     }
 
+    function onChange(date: moment.Moment | null, dateString: string | null) {
+        console.log(date, dateString);   
+      }
+
     return  (
 
-        <form
+        <Form
             onSubmit={event => {
                 event.preventDefault()
                 if (!item.listitem) return 
                     props.addItem(item)
                     setItem(initialFormState)
+                    //setDateField(null)
             }}
         >
-            <label>Add a new item</label>
-            <input 
-                type="text" 
-                name="listitem" 
-                value={item.listitem}
-                onChange={handleInputChange}
-                style={{'width': '50%'}}
-            >
-            </input>
-            <br />
-            <DatePicker 
-                showTime 
-                placeholder="Select date (optional)"
-                onChange={value => setStartDate(value)} 
-                onOk={value => setStartDate(value)} 
-            />
-            <br />
-            <Button 
-            >
+            <Form.Item>
+                <Input 
+                    type="text" 
+                    name="listitem" 
+                    value={item.listitem}
+                    onChange={handleInputChange}
+                    //style={{'width': '50%'}}
+                    placeholder='* Add a new task'               
+                />
+            </Form.Item>
+
+            <Form.Item>
+                <DatePicker 
+                    placeholder="Date (optional)"
+                    onChange={onChange} 
+                />
+            </Form.Item>
+       
+            <Button htmlType="submit">
                 Done!
             </Button>
-        </form>
+        </Form>
     )       
 }
 
