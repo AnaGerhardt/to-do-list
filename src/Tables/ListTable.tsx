@@ -1,12 +1,20 @@
 import React from 'react'
 import { Item } from '../App'
-import { Button } from 'antd'
+import { Button } from 'react-bootstrap'
 import styled from 'styled-components'
 
 
 const Table = styled.table`
    margin: 40px 0 40px 0; 
 ` 
+
+const Tr = styled.tr`
+    border-bottom: 1px solid #AAAA;
+` 
+
+const Td = styled.td`
+    padding: 1vh 8vw 1vh 0vw;
+`  
 
 interface IProps {
     list: Item[]
@@ -22,16 +30,19 @@ const ListTable = (props: Item & IProps) => {
     return (
     <Table>
         <thead>
-            <tr>
-             <th>List</th>
-            </tr>
+            <Tr>
+             <th>Tasks</th>
+             <th>Date</th>
+             <th>Actions</th>
+            </Tr>
         </thead>
         <tbody>
             {props.list.length > 0 ? (
                props.list.map(item => (      
-                <tr key={item.id} className={item.checked ? 'completed' : ''}>
-                <td><input
+                <Tr key={item.id} className={item.checked ? 'completed' : ''}>
+                <Td><input
                         type="checkbox"
+                        style={{'marginRight': '10px'}} 
                         //name={item.id}
                         onChange={ev => {
                             item.checked = ev.currentTarget.checked
@@ -39,26 +50,29 @@ const ListTable = (props: Item & IProps) => {
                         onClick={() => props.checkHandler(item.id)}
                     />
                     {item.listitem}
-                </td>
-                <td>
-                     <Button 
-                        onClick={() => props.deleteItem(item.id)} 
-                        style={{'marginLeft': '0.5em'}}                       
-                    >
-                        Delete
-                    </Button>
+                </Td>
+                <Td>{item.dateitem}</Td>
+                <Td>
                     <Button 
-                        onClick={() => {props.editRow(item)}}                        
+                        onClick={() => {props.editRow(item)}}
+                        style={{'marginRight': '5px'}}                      
                     >
                         Edit
                     </Button>
-                </td>
-                </tr>
+                     <Button 
+                        onClick={() => props.deleteItem(item.id)}                     
+                    >
+                        Delete
+                    </Button>
+                </Td>
+                </Tr>
                ))
             ) : (
-                <tr>
-                    <td>No items yet.</td>
-                </tr>
+                <Tr>
+                    <Td>No items yet.</Td>
+                    <Td></Td>
+                    <Td></Td>
+                </Tr>
             )}
         </tbody>
     </Table>

@@ -1,23 +1,15 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { Row, Col, Button } from 'antd'
+import React, { useState, useEffect } from 'react'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import AddForm from './Forms/AddForm'
 import EditForm from './Forms/EditForm'
 import ListTable from './Tables/ListTable'
 
 
-const Container = styled.div`
-  margin: 10vh 10vw 10vh 10vw;
-  padding: 20px;
-  border-style: solid;
-  border-color: #AAAA;
-  border-width: 1px;
-  border-radius: 5px;
-`
 
 export interface Item {
   id?: number
   checked?: boolean
+  dateitem?: Date | string
   listitem?: string
   name?: string
   length?: number
@@ -25,16 +17,23 @@ export interface Item {
 
 const App = () => {
 
+  const [theme, setTheme] = useState(false)
+
+  useEffect(() => {
+    theme ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme')
+  }, [theme])
+
   const itemArray = [
-    { id: 1, listitem: 'Wash clothes' },
-    { id: 2, listitem: 'Take pets to the vet' },
-    { id: 3, listitem: 'Deposit money' },
+    { id: 1, listitem: 'Wash clothes', dateitem: undefined },
+    { id: 2, listitem: 'Take pets to the vet', dateitem: undefined },
+    { id: 3, listitem: 'Deposit money', dateitem: undefined },
   ]
 
+  const initialFormState = { id: undefined, listitem: '', dateitem: undefined }
+
   const [list, setList] = useState<Item[]>(itemArray)
-  const [theme, setTheme] = useState(true)
   const [editing, setEditing] = useState(false)
-  const [currentItem, setCurrentItem] = useState()
+  const [currentItem, setCurrentItem] = useState<Item>(initialFormState)
 
   const addItem = (item: Item) => {
     item.id = list.length + 1
@@ -59,11 +58,6 @@ const App = () => {
     setList(list.filter(item => !item.checked))
   }
 
-  const changeTheme = () => {
-    setTheme(!theme)
-    theme ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme')  
-  }
-
   const checkHandler = (id: Item) => {
     setList(
       list.map (item => {
@@ -76,17 +70,17 @@ const App = () => {
   }
 
   return (
-    <Container>
+    <Container style={{'marginTop':'5vh'}}>
 
       <Row>
-        <Col span={12}>
+        <Col>
            <h2>My "To Do" List</h2>
         </Col>
-        <Col span={12} style={{'textAlign':'right'}}>
+        <Col style={{'textAlign':'right'}}>
           <Button
-            onClick={changeTheme}
+            onClick={() => setTheme(!theme)}
           >
-            {theme ? 'Night Mode' : 'Light Mode'}
+            {theme ? 'Light Mode' : 'Night Mode'}
           </Button>
         </Col>
       </Row>

@@ -1,7 +1,17 @@
 import * as React from 'react'
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
+import { Form } from 'react-bootstrap'
+import styled from 'styled-components'
 import { Item } from '../App'
 
+
+const Button = styled.button`
+    background: white;
+    color: #1890ff;
+    border: 1px solid #1890ff;
+    border-radius: 3px;
+    padding: 5px;
+`
 
 interface IProps {
     currentItem: Item
@@ -19,40 +29,48 @@ const EditForm = (props: IProps) => {
         setItem({ ...item, [name]: value })
     }
 
+    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value, name } = e.target
+        setItem({ ...item, [name]: value })
+    }
+
     useEffect(() => {
         setItem(props.currentItem)
     }, [props])
 
     return  (
-        <form
-            onSubmit={event => {
+        <Form
+            onSubmit={(event: { preventDefault: () => void; }) => {
                 event.preventDefault()
                 if (!item.listitem) return 
                     props.updateItem(item.id, item)
             }}
         >
-            <label>Edit item</label>
-            <input 
-                type="text" 
-                name="listitem" 
-                value={item.listitem}
-                onChange={handleInputChange}
-                placeholder={props.currentItem.name}
-            >
-            </input>
-            <button 
-                className="muted-button"
-                style={{'marginRight': '0.5em'}}
-            >
+           <Form.Group>
+                <Form.Control
+                    type="text" 
+                    name="listitem"
+                    value={item.listitem}
+                    onChange={handleInputChange}
+                    placeholder="* Add a new task" 
+                />      
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Control
+                    type="date"
+                    name="dateitem"
+                    //value={item.dateitem}
+                    onChange={handleDateChange}
+                    style={{'width':'50%'}}
+                />
+            </Form.Group>
+
+
+            <Button type="submit">
                 Done!
-            </button>
-            <button 
-                className="muted-button"
-                onClick={() => props.setEditing(false)} 
-            >
-                Cancel
-            </button>
-        </form>
+            </Button>
+        </Form>
     )       
 }
 
