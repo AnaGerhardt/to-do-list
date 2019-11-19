@@ -7,7 +7,7 @@ import { Item } from '../App'
 
 const Button = styled.button`
     background: white;
-    color: #1890ff;
+    { theme ? color: #1890ff : color: white };
     border: 1px solid #1890ff;
     border-radius: 3px;
     padding: 5px;

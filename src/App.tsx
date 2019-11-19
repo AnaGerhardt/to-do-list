@@ -1,27 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
+import styled, { ThemeProvider } from 'styled-components'
+import {lightTheme, darkTheme } from './Themes'
 import AddForm from './Forms/AddForm'
 import EditForm from './Forms/EditForm'
 import ListTable from './Tables/ListTable'
 
 
-
 export interface Item {
   id?: number
   checked?: boolean
-  dateitem?: Date | string
+  dateitem?: Date
   listitem?: string
   name?: string
   length?: number
 }
 
+const Button = styled.button`
+  background: white;
+  color: ${({theme}) => theme.color};
+  border: 1px solid ${({theme}) => theme.color};
+  border-radius: 3px;
+  padding: 5px;
+`
+
+
 const App = () => {
 
-  const [theme, setTheme] = useState(false)
+  const [theme, setTheme] = useState('light')
 
-  useEffect(() => {
-    theme ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme')
-  }, [theme])
+  // useEffect(() => {
+  //   toggle ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme')
+  // }, [toggle])
 
   const itemArray = [
     { id: 1, listitem: 'Wash clothes', dateitem: undefined },
@@ -69,51 +79,66 @@ const App = () => {
     )
   }
 
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }
+
+  // const handleToggleTheme = () => {
+  //   setToggle(!toggle)
+  //   toggle ? setTheming(themes['dark']) : setTheming(themes['light'])
+  // }
+
   return (
-    <Container style={{'marginTop':'5vh'}}>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <Container style={{'marginTop':'5vh'}}>
 
-      <Row>
-        <Col>
-           <h2>My "To Do" List</h2>
-        </Col>
-        <Col style={{'textAlign':'right'}}>
-          <Button
-            onClick={() => setTheme(!theme)}
-          >
-            {theme ? 'Light Mode' : 'Night Mode'}
-          </Button>
-        </Col>
-      </Row>
+        <Row>
+          <Col>
+            <h2>My "To Do" List</h2>
+          </Col>
+          <Col style={{'textAlign':'right'}}>
+            <Button
+              onClick={toggleTheme}
+            >
+              {theme === 'light' ? 'Light Mode' : 'Night Mode'}
+            </Button>
+          </Col>
+        </Row>
 
-      <br />
+        <br />
 
-      <Row>
-        <Col>
-          {editing ? 
-            (<EditForm editing={editing} setEditing={setEditing} updateItem={updateItem} currentItem={currentItem} />) 
-            : 
-            (<AddForm addItem={addItem} />)
-          }
-        </Col>
-      </Row>
+        <Row>
+          <Col>
+            {editing ? 
+              (<EditForm editing={editing} setEditing={setEditing} updateItem={updateItem} currentItem={currentItem} />) 
+              : 
+              (<AddForm addItem={addItem} />)
+            }
+          </Col>
+        </Row>
 
-      <Row>
-        <Col>
-         <ListTable list={list} deleteItem={deleteItem} editRow={editRow} checkHandler={checkHandler} />
-        </Col>
-      </Row>
+        <Row>
+          <Col>
+          <ListTable list={list} deleteItem={deleteItem} editRow={editRow} checkHandler={checkHandler} />
+          </Col>
+        </Row>
 
-      <Row>
-        <Col>
-          <Button
-           onClick={deleteAllChecked}
-          >
-            Delete All Checked
-          </Button>
-        </Col>
-      </Row>
+        <Row>
+          <Col>
+            <Button
+            onClick={deleteAllChecked}
+            >
+              Delete All Checked
+            </Button>
+          </Col>
+        </Row>
 
-    </Container>
+      </Container>
+    </ThemeProvider>
   );
 }
 
