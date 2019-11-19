@@ -2,14 +2,13 @@
 
 # Introduction
 
-Hi! This project was created to study React in steps, from the very basic to more advanced features. 
+Hi! This project was created to study front-end dev. and React, from the basic to more advanced features. 
 
 ## Stack
 
 - Reactjs + Hooks
 - Typescript
-- UI React Toolkit `Ant Design` 
-- Styled-components
+- Styled-components 
 
 # Create-react-app
 
