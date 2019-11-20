@@ -1,15 +1,8 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { Form } from 'react-bootstrap'
+import { Button } from '../StyledComponents'
 
 
-const Button = styled.button`
-    background: white;
-    color: #1890ff;
-    border: 1px solid #1890ff;
-    border-radius: 3px;
-    padding: 5px;
-`
 
 interface IProps {
     addItem: Function
@@ -43,13 +36,14 @@ const AddForm = (props: IProps) => {
                     setItem(initialFormState)
             }}
         >
+
             <Form.Group>
                 <Form.Control
                     type="text" 
                     name="listitem"
                     value={item.listitem}
                     onChange={handleInputChange}
-                    placeholder="* Add a new task" 
+                    placeholder="New task" 
                 />      
             </Form.Group>
 
@@ -59,8 +53,23 @@ const AddForm = (props: IProps) => {
                     name="dateitem"
                     value={item.dateitem}
                     onChange={handleDateChange}
-                    style={{'width':'50%'}}
+                    style={{'width':'70%'}}
                 />
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Control 
+                    as="select"
+                    name="category"
+                    //value={item.category}
+                    //onChange={handleCategoryChange}
+                    style={{'width':'70%'}}
+                > 
+                    <option>Family</option>
+                    <option>Personal</option>
+                    <option>Travel</option>  
+                    <option>Work</option>                   
+                </Form.Control>     
             </Form.Group>
 
 

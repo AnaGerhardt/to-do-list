@@ -1,20 +1,8 @@
 import React from 'react'
 import { Item } from '../App'
-import { Button } from 'react-bootstrap'
-import styled from 'styled-components'
+import { ActionButton, Table, Tr, Td } from '../StyledComponents'
 
 
-const Table = styled.table`
-   margin: 40px 0 40px 0; 
-` 
-
-const Tr = styled.tr`
-    border-bottom: 1px solid #AAAA;
-` 
-
-const Td = styled.td`
-    padding: 1vh 8vw 1vh 0vw;
-`  
 
 interface IProps {
     list: Item[]
@@ -53,17 +41,17 @@ const ListTable = (props: Item & IProps) => {
                 </Td>
                 <Td>{item.dateitem}</Td>
                 <Td>
-                    <Button 
+                    <ActionButton 
                         onClick={() => {props.editRow(item)}}
                         style={{'marginRight': '5px'}}                      
                     >
                         Edit
-                    </Button>
-                     <Button 
+                    </ActionButton>
+                     <ActionButton 
                         onClick={() => props.deleteItem(item.id)}                     
                     >
                         Delete
-                    </Button>
+                    </ActionButton>
                 </Td>
                 </Tr>
                ))

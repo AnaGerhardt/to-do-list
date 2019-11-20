@@ -1,17 +1,10 @@
 import * as React from 'react'
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
 import { Form } from 'react-bootstrap'
-import styled from 'styled-components'
+import { Button } from '../StyledComponents'
 import { Item } from '../App'
 
 
-const Button = styled.button`
-    background: white;
-    { theme ? color: #1890ff : color: white };
-    border: 1px solid #1890ff;
-    border-radius: 3px;
-    padding: 5px;
-`
 
 interface IProps {
     currentItem: Item
