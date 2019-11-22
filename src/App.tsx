@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
 import {lightTheme, darkTheme } from './Themes'
-import { Button, ActionButton } from './StyledComponents'
+import { Button, ActionButton, MenuButton } from './StyledComponents'
 import AddForm from './Forms/AddForm'
 import EditForm from './Forms/EditForm'
 import ListTable from './Tables/ListTable'
@@ -21,10 +21,6 @@ export interface Item {
 const App = () => {
 
   const [theme, setTheme] = useState('light')
-
-  // useEffect(() => {
-  //   (theme === 'light') ? document.body.classList.remove('dark-theme') : document.body.classList.add('dark-theme')
-  // }, [theme])
 
   const itemArray = [
     { id: 1, listitem: 'Wash clothes', dateitem: undefined },
@@ -114,6 +110,16 @@ const App = () => {
               : 
               (<AddForm addItem={addItem} />)
             }
+          </Col>
+        </Row>
+
+        <Row style={{'marginTop':'20px'}}>
+          <Col style={{'textAlign':'center'}}>
+            <MenuButton>Family</MenuButton>
+            <MenuButton>Personal</MenuButton>
+            <MenuButton>Travel</MenuButton>
+            <MenuButton>Work</MenuButton>
+            <MenuButton style={{'border': 'none'}}>View All</MenuButton>
           </Col>
         </Row>
 

@@ -55,7 +55,7 @@ const EditForm = (props: IProps) => {
                     name="dateitem"
                     //value={item.dateitem}
                     onChange={handleDateChange}
-                    style={{'width':'50%'}}
+                    style={{'width':'70%'}}
                 />
             </Form.Group>
 

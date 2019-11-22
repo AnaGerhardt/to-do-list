@@ -16,6 +16,14 @@ export const ActionButton = styled.button`
   padding: 5px;
 `
 
+export const MenuButton = styled.button`
+  background: ${({theme}) => theme.bg};
+  color: ${({theme}) => theme.color};
+  border: none;
+  border-right: 1px solid ${({theme}) => theme.color};
+  padding: 5px 10px 5px 10px;
+`
+
 export const Table = styled.table`
    margin: 40px 0 40px 0; 
 ` 
