@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
 import { Form } from 'react-bootstrap'
-import { Button } from '../StyledComponents'
-import { Item } from '../App'
+import { Button } from '../../Styles/StyledComponents'
+import { Item } from '../../App'
 
 
 
@@ -11,6 +11,7 @@ interface IProps {
     updateItem: Function
     setEditing: Dispatch<SetStateAction<boolean>>
     editing: boolean
+    categories: Object
 }
 
 const EditForm = (props: IProps) => {
@@ -19,11 +20,6 @@ const EditForm = (props: IProps) => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
-        setItem({ ...item, [name]: value })
-    }
-
-    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value, name } = e.target
         setItem({ ...item, [name]: value })
     }
 
@@ -54,9 +50,22 @@ const EditForm = (props: IProps) => {
                     type="date"
                     name="dateitem"
                     //value={item.dateitem}
-                    onChange={handleDateChange}
+                    onChange={handleInputChange}
                     style={{'width':'70%'}}
                 />
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Control 
+                    as="select"
+                    name="category"
+                    onChange={handleInputChange}
+                    style={{'width':'70%'}}
+                > 
+                {Object.entries(props.categories).map(([k,v], i)=> (
+                    <option key={k}>{v}</option>
+                ))}
+                </Form.Control>     
             </Form.Group>
 
 

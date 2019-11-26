@@ -1,27 +1,23 @@
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
-import { Button } from '../StyledComponents'
+import { Button } from '../../Styles/StyledComponents'
 
 
 
 interface IProps {
     addItem: Function
+    categories: Object
 }
 
 
 const AddForm = (props: IProps) => {
 
 
-    const initialFormState = { id: undefined, listitem: '', dateitem: undefined }
+    const initialFormState = { id: undefined, listitem: '', dateitem: '', category: undefined }
     const [item, setItem] = useState(initialFormState)
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
-        setItem({ ...item, [name]: value })
-    }
-
-    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value, name } = e.target
         setItem({ ...item, [name]: value })
     }
 
@@ -52,7 +48,7 @@ const AddForm = (props: IProps) => {
                     type="date"
                     name="dateitem"
                     value={item.dateitem}
-                    onChange={handleDateChange}
+                    onChange={handleInputChange}
                     style={{'width':'70%'}}
                 />
             </Form.Group>
@@ -61,17 +57,14 @@ const AddForm = (props: IProps) => {
                 <Form.Control 
                     as="select"
                     name="category"
-                    //value={item.category}
-                    //onChange={handleCategoryChange}
+                    onChange={handleInputChange}
                     style={{'width':'70%'}}
                 > 
-                    <option>Family</option>
-                    <option>Personal</option>
-                    <option>Travel</option>  
-                    <option>Work</option>                   
+                {Object.entries(props.categories).map(([k,v], i)=> (
+                    <option key={k}>{v}</option>
+                ))}
                 </Form.Control>     
             </Form.Group>
-
 
             <Button type="submit">
                 Done!

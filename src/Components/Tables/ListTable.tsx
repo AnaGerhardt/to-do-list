@@ -1,6 +1,6 @@
 import React from 'react'
-import { Item } from '../App'
-import { ActionButton, Table, Tr, Td } from '../StyledComponents'
+import { Item } from '../../App'
+import { ActionButton, Table, Tr, Td } from '../../Styles/StyledComponents'
 
 
 

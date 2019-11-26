@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
-import {lightTheme, darkTheme } from './Themes'
-import { Button, ActionButton, MenuButton } from './StyledComponents'
-import AddForm from './Forms/AddForm'
-import EditForm from './Forms/EditForm'
-import ListTable from './Tables/ListTable'
+import { lightTheme, darkTheme } from './Styles/Themes'
+import { Button, ActionButton, MenuButton } from './Styles/StyledComponents'
+import AddForm from './Components/Forms/AddForm'
+import EditForm from './Components/Forms/EditForm'
+import ListTable from './Components/Tables/ListTable'
 
 
 export interface Item {
@@ -22,10 +22,17 @@ const App = () => {
 
   const [theme, setTheme] = useState('light')
 
+  const categories = {
+    1: 'Family',
+    2: 'Personal',
+    3: 'Travel',
+    4: 'Work'
+}
+
   const itemArray = [
-    { id: 1, listitem: 'Wash clothes', dateitem: undefined },
-    { id: 2, listitem: 'Take pets to the vet', dateitem: undefined },
-    { id: 3, listitem: 'Deposit money', dateitem: undefined },
+    { id: 1, listitem: 'Wash clothes', dateitem: undefined, category: 'Personal' },
+    { id: 2, listitem: 'Take pets to the vet', dateitem: undefined, category: 'Personal'},
+    { id: 3, listitem: 'Deposit money', dateitem: undefined, category: 'Personal' },
   ]
 
   const initialFormState = { id: undefined, listitem: '', dateitem: undefined }
@@ -106,9 +113,9 @@ const App = () => {
         <Row>
           <Col lg={6}>
             {editing ? 
-              (<EditForm editing={editing} setEditing={setEditing} updateItem={updateItem} currentItem={currentItem} />) 
+              (<EditForm editing={editing} setEditing={setEditing} updateItem={updateItem} currentItem={currentItem} categories={categories} />) 
               : 
-              (<AddForm addItem={addItem} />)
+              (<AddForm addItem={addItem} categories={categories} />)
             }
           </Col>
         </Row>
