@@ -97,7 +97,7 @@ const App = () => {
 
         <Row>
           <Col>
-            <h2>My "To Do" List</h2>
+            <h4>My "To Do" List</h4>
           </Col>
           <Col style={{'textAlign':'right'}}>
             <ActionButton

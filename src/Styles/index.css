@@ -7,21 +7,30 @@
 }
 
 .root {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
     background: white;
     padding: 20px;
     box-shadow: 0 0 12px #888888;
 }
 
+@media (min-width: 480px) {
+  .root {
+      margin-top: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+      font-size: 0.8rem
+  }
+}
+
 body {
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #f6f5f7;
+    font-size: 16px;
 }
 
 input:focus,
