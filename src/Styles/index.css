@@ -24,6 +24,14 @@
   }
 }
 
+@media (max-width: 480px) {
+  .root {
+      font-size: 0.8rem
+  }
+}
+
+
+
 body {
     height: 100%;
     display: flex;

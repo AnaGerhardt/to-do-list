@@ -1,22 +1,27 @@
 import * as React from 'react'
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
-import { Form } from 'react-bootstrap'
-import { Button } from '../../Styles/StyledComponents'
-import { Item } from '../../App'
+import { Modal, Form } from 'react-bootstrap'
+import { ActionButton, Button } from '../../Styles/StyledComponents'
+import { Item } from '../Tables/ListTable'
+import Categories from '../Categories'
 
 
 
 interface IProps {
-    currentItem: Item
-    updateItem: Function
-    setEditing: Dispatch<SetStateAction<boolean>>
-    editing: boolean
-    categories: Object
+    currentItem?: Item
 }
 
 const EditForm = (props: IProps) => {
 
     const [item, setItem] = useState(props.currentItem)
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+
+    const handleShow = () => { 
+        setShow(true); 
+        //props.editRow(item);
+    }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -28,20 +33,32 @@ const EditForm = (props: IProps) => {
     }, [props])
 
     return  (
+    <>
+
+    <ActionButton onClick={handleShow} style={{'marginRight':'5px'}}>Edit</ActionButton>
+
+    <Modal centered show={show} onHide={handleClose}>
+
+    <Modal.Header closeButton>
+        <Modal.Title>Edit Task</Modal.Title>
+    </Modal.Header>
+
+    <Modal.Body>
         <Form
             onSubmit={(event: { preventDefault: () => void; }) => {
                 event.preventDefault()
-                if (!item.listitem) return 
-                    props.updateItem(item.id, item)
+                //if (!item.listitem) return
+                //props.updateItem(item.id, item)
             }}
         >
-           <Form.Group>
+
+            <Form.Group>
                 <Form.Control
                     type="text" 
                     name="listitem"
-                    value={item.listitem}
+                    //value={item.listitem}
                     onChange={handleInputChange}
-                    placeholder="* Add a new task" 
+                    placeholder="New task" 
                 />      
             </Form.Group>
 
@@ -62,17 +79,21 @@ const EditForm = (props: IProps) => {
                     onChange={handleInputChange}
                     style={{'width':'70%'}}
                 > 
-                {Object.entries(props.categories).map(([k,v], i)=> (
+                {Object.entries(Categories).map(([k,v], i)=> (
                     <option key={k}>{v}</option>
                 ))}
                 </Form.Control>     
             </Form.Group>
 
-
-            <Button type="submit">
+            <Button type="submit" onClick={handleClose}>
                 Done!
             </Button>
         </Form>
+    </Modal.Body>
+
+    </Modal>
+
+</>
     )       
 }
 
