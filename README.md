@@ -8,7 +8,8 @@ Hi! This project was created to study front-end development with React, from bas
 
 - Reactjs + Hooks
 - Typescript
-- Styled-components 
+- Styled-components
+- React-bootstrap
 
 # Create-react-app
 
