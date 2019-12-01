@@ -51,3 +51,7 @@ button:focus {
 :focus {
   outline: none;
 }
+
+.completed {
+  text-decoration: line-through;
+}

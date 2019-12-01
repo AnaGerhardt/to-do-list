@@ -11,13 +11,13 @@ import ListTable, { Item } from './Components/Tables/ListTable'
 const App = () => {
 
   const itemArray = [
-    { id: 1, listitem: 'Wash clothes', dateitem: undefined, category: 'Personal' },
-    { id: 2, listitem: 'Take pets to the vet', dateitem: undefined, category: 'Personal'},
-    { id: 3, listitem: 'Deposit money', dateitem: undefined, category: 'Personal' },
+    { id: 1, listitem: 'Wash clothes', dateitem: undefined, category: undefined },
+    { id: 2, listitem: 'Take pets to the vet', dateitem: undefined, category: undefined},
+    { id: 3, listitem: 'Deposit money', dateitem: undefined, category: undefined },
   ]
 
   const [list, setList] = useState<Item[]>(itemArray)
-  const initialFormState = { id: undefined, listitem: '', dateitem: undefined }
+  const initialFormState = { id: undefined, listitem: '', dateitem: undefined, category: undefined }
   const [currentItem, setCurrentItem] = useState<Item>(initialFormState)
   const [theme, setTheme] = useState('light')
 
@@ -45,10 +45,6 @@ const App = () => {
     setList(list.filter((item: Item) => item.id !== id))
   }
 
-  const deleteAllChecked = () => {
-    setList(list.filter(item => !item.checked))
-  }
-
   const checkHandler = (id: Item) => {
     setList(
       list.map (item => {
@@ -60,9 +56,20 @@ const App = () => {
     )
   }
 
+  const selectAll = (item: Item) => {
+    list.forEach(item => item.checked = true)
+    setList(list)
+    console.log(list)
+  }
+
   const editRow = (item: Item) => {
-    setCurrentItem({ id: item.id, checked: item.checked, listitem: item.listitem })
+    setCurrentItem({ id: item.id, checked: item.checked, listitem: item.listitem, category: item.category })
   };
+
+  const updateItem = (id: Item, updatedItem: Item) => {
+    setList(list.map(item => (item.id === id ? updatedItem : item)))
+  }
+
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
@@ -99,8 +106,11 @@ const App = () => {
               list={list} 
               setList={setList} 
               deleteItem={deleteItem}
-              deleteAllChecked={deleteAllChecked}
               checkHandler={checkHandler}
+              editRow={editRow}
+              updateItem={updateItem}
+              currentItem={currentItem}
+              selectAll={selectAll}
             />
           </Col>
         </Row>

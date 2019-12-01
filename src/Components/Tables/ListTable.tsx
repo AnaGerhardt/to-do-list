@@ -8,6 +8,7 @@ export interface Item {
     checked?: boolean
     dateitem?: Date | string
     listitem?: string
+    category?: string
     name?: string
     length?: number
   }
@@ -17,8 +18,11 @@ interface IProps {
     setList: Dispatch<SetStateAction<Object[]>>
     map?: Function
     deleteItem: Function
-    deleteAllChecked: Function
     checkHandler: Function
+    editRow: Function
+    updateItem: Function
+    selectAll: Function
+    currentItem: Item
   }
 
 const ListTable = (props: Item & IProps) => {
@@ -50,7 +54,12 @@ const ListTable = (props: Item & IProps) => {
                     </Td>
                     <Td>{item.dateitem}</Td>
                     <Td>
-                        <EditForm />
+                        <EditForm 
+                            item={item} 
+                            editRow={props.editRow} 
+                            updateItem={props.updateItem} 
+                            currentItem={props.currentItem}
+                        />
                         <ActionButton 
                             onClick={() => props.deleteItem(item.id)}                     
                         >
@@ -70,7 +79,14 @@ const ListTable = (props: Item & IProps) => {
         </Table>
 
         <Button
-            onClick={() => props.deleteAllChecked}
+            onClick={() => props.selectAll()}
+            style={{'marginRight':'5px'}}
+        >
+            Select All
+        </Button>
+
+        <Button
+            onClick={() => props.setList(props.list.filter(item => !item.checked))}
         >
             Delete All Checked
         </Button>

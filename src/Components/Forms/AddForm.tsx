@@ -71,6 +71,7 @@ const AddForm = (props: IProps) => {
                     <Form.Control 
                         as="select"
                         name="category"
+                        value={item.category}
                         onChange={handleInputChange}
                         style={{'width':'70%'}}
                     > 
