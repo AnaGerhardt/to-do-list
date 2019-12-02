@@ -44,7 +44,6 @@ const ListTable = (props: Item & IProps) => {
                     <Td><input
                             type="checkbox"
                             style={{'marginRight': '10px'}} 
-                            //name={item.id}
                             onChange={ev => {
                                 item.checked = ev.currentTarget.checked
                             }}

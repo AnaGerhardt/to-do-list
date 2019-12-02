@@ -21,6 +21,7 @@ const App = () => {
   const [currentItem, setCurrentItem] = useState<Item>(initialFormState)
   const [theme, setTheme] = useState('light')
 
+
   const toggleTheme = () => {
     if (theme === 'light') {
       setTheme('dark');
@@ -56,9 +57,16 @@ const App = () => {
     )
   }
 
-  const selectAll = (item: Item) => {
-    list.forEach(item => item.checked = true)
-    setList(list)
+  const selectAll = () => {
+    setList(
+      list.filter (item => {
+        if ((item.checked === undefined) || (item.checked === false)) {
+            item.checked = true
+        }
+        else { item.checked = false }
+        return item
+      })
+    )
     console.log(list)
   }
 
