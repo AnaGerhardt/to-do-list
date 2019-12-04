@@ -5,6 +5,7 @@ import { lightTheme, darkTheme } from './Styles/Themes'
 import { ActionButton, MenuButton } from './Styles/StyledComponents'
 import AddForm from './Components/Forms/AddForm'
 import ListTable, { Item } from './Components/Tables/ListTable'
+//import Categories from './Components/Categories'
 
 
 
@@ -67,8 +68,16 @@ const App = () => {
         return item
       })
     )
-    console.log(list)
   }
+
+  // const listFilter = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   setList(
+  //     list.filter (item => 
+  //       item.category === e.currentTarget.value
+  //     )
+  //   )
+  //   console.log(list)
+  // }
 
   const editRow = (item: Item) => {
     setCurrentItem({ id: item.id, checked: item.checked, listitem: item.listitem, category: item.category })
@@ -100,11 +109,11 @@ const App = () => {
 
         <Row style={{'marginTop':'20px'}}>
           <Col style={{'textAlign':'center'}}>
-            <MenuButton>Family</MenuButton>
-            <MenuButton>Personal</MenuButton>
-            <MenuButton>Travel</MenuButton>
-            <MenuButton>Work</MenuButton>
-            <MenuButton style={{'border': 'none'}}>View All</MenuButton>
+            <MenuButton key={1} /*value={Object.values(Categories)[0]} onClick={listFilter}*/>Family</MenuButton>
+            <MenuButton key={2} /*value={Object.values(Categories)[1]} onClick={listFilter}*/>Personal</MenuButton>
+            <MenuButton key={3} /*value={Object.values(Categories)[2]} onClick={listFilter}*/>Travel</MenuButton>
+            <MenuButton key={4} /*value={Object.values(Categories)[3]} onClick={listFilter}*/>Work</MenuButton>
+            <MenuButton key={5} /*onClick={listFilter}*/ style={{'border': 'none'}}>View All</MenuButton>
           </Col>
         </Row>
 

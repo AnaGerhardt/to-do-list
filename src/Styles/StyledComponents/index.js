@@ -17,11 +17,23 @@ export const ActionButton = styled.button`
 `
 
 export const MenuButton = styled.button`
-  background: ${({theme}) => theme.bg};
+  background: none;
   color: ${({theme}) => theme.color};
   border: none;
   border-right: 1px solid ${({theme}) => theme.color};
   padding: 5px 10px 5px 10px;
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+export const TaskButton = styled.button`
+  background: none;
+  color: inherit;
+  border: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 export const Table = styled.table`

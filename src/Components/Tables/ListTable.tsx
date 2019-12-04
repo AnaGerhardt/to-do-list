@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { Button, ActionButton, Table, Tr, Td } from '../../Styles/StyledComponents'
 import EditForm from '../Forms/EditForm'
+import DetailForm from '../Forms/DetailForm'
 
 
 export interface Item {
@@ -34,13 +35,12 @@ const ListTable = (props: Item & IProps) => {
                 <Tr>
                 <th>Tasks</th>
                 <th>Date</th>
-                <th>Actions</th>
                 </Tr>
             </thead>
             <tbody>
                 {props.list.length > 0 ? (
                 props.list.map(item => (      
-                    <Tr key={item.id} className={item.checked ? 'completed' : ''}>
+                    <Tr key={item.id}>
                     <Td><input
                             type="checkbox"
                             style={{'marginRight': '10px'}} 
@@ -49,21 +49,25 @@ const ListTable = (props: Item & IProps) => {
                             }}
                             onClick={() => props.checkHandler(item.id)}
                         />
-                        {item.listitem}
+                        <DetailForm 
+                            item={item}
+                            currentItem={props.currentItem} 
+                        />
                     </Td>
-                    <Td>{item.dateitem}</Td>
                     <Td>
-                        <EditForm 
+                        {item.dateitem}
+                        {/* <EditForm 
                             item={item} 
                             editRow={props.editRow} 
                             updateItem={props.updateItem} 
                             currentItem={props.currentItem}
                         />
                         <ActionButton 
-                            onClick={() => props.deleteItem(item.id)}                     
+                            onClick={() => props.deleteItem(item.id)} 
+                            style={{'fontSize': '0.8em'}}                    
                         >
                             Delete
-                        </ActionButton>
+                        </ActionButton> */}
                     </Td>
                     </Tr>
                 ))

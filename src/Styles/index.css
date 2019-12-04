@@ -1,11 +1,6 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
-.dark-theme {
-    color: white;
-    background-color: grey;
-}
-
 .root {
     background: white;
     padding: 20px;
@@ -18,7 +13,7 @@
   }
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .root {
       font-size: 0.8rem
   }
@@ -28,9 +23,7 @@
   .root {
       font-size: 0.8rem
   }
-}
-
-
+} */
 
 body {
     height: 100%;
@@ -52,6 +45,15 @@ button:focus {
   outline: none;
 }
 
+a, a:hover {
+  color: inherit;
+}
+
+.dark-theme {
+  color: white;
+  background-color: grey;
+}
+
 .completed {
-  text-decoration: line-through;
+text-decoration: line-through;
 }
