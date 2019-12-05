@@ -1,6 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { Button, ActionButton, Table, Tr, Td } from '../../Styles/StyledComponents'
-import EditForm from '../Forms/EditForm'
+import { Button, Table, Tr, Td } from '../../Styles/StyledComponents'
 import DetailForm from '../Forms/DetailForm'
 
 
@@ -52,22 +51,13 @@ const ListTable = (props: Item & IProps) => {
                         <DetailForm 
                             item={item}
                             currentItem={props.currentItem} 
+                            editRow={props.editRow} 
+                            updateItem={props.updateItem} 
+                            deleteItem={props.deleteItem}
                         />
                     </Td>
                     <Td>
                         {item.dateitem}
-                        {/* <EditForm 
-                            item={item} 
-                            editRow={props.editRow} 
-                            updateItem={props.updateItem} 
-                            currentItem={props.currentItem}
-                        />
-                        <ActionButton 
-                            onClick={() => props.deleteItem(item.id)} 
-                            style={{'fontSize': '0.8em'}}                    
-                        >
-                            Delete
-                        </ActionButton> */}
                     </Td>
                     </Tr>
                 ))
@@ -83,7 +73,7 @@ const ListTable = (props: Item & IProps) => {
 
         <Button
             onClick={() => props.selectAll()}
-            style={{'marginRight':'5px'}}
+            style={{'marginRight':'10px'}}
         >
             Select All
         </Button>

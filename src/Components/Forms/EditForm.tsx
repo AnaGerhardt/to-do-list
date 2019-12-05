@@ -37,7 +37,12 @@ const EditForm = (props: IProps) => {
     return  (
         <>
 
-            <ActionButton onClick={handleShow} style={{'marginRight':'5px', 'fontSize':'0.8em'}}>Edit</ActionButton>
+            <ActionButton 
+                onClick={handleShow} 
+                style={{'marginRight':'5px', 'padding':'5px 10px 5px 10px'}}
+            >
+                Edit
+            </ActionButton>
 
             <Modal centered show={show} onHide={handleClose}>
 
