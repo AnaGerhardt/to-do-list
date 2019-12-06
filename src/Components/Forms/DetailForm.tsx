@@ -30,8 +30,8 @@ const DetailForm = (props: IProps) => {
     }, [props])
 
     return  (
-        <>
-    
+    <>
+
         <TaskButton 
             onClick={handleShow} 
             className={props.item.checked ? 'completed' : ''}
@@ -64,6 +64,15 @@ const DetailForm = (props: IProps) => {
                             //value={props.item.listitem}
                             onChange={handleInputChange} 
                         />      
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Control
+                            type="text"
+                            name="additionalnotes"
+                            //value={props.item.additionalnotes}
+                            onChange={handleInputChange}
+                        />
                     </Form.Group>
 
                     <Form.Group>
@@ -113,7 +122,7 @@ const DetailForm = (props: IProps) => {
                     <Form.Group>
                         <Form.Control
                             type="text"
-                            placeholder="Observations"
+                            value={props.item.additionalnotes}
                             readOnly
                         />
                     </Form.Group>
@@ -139,7 +148,7 @@ const DetailForm = (props: IProps) => {
                     <Row>
                         <Col>
                             <ActionButton 
-                                onClick={() => setEditing(true)}                  
+                                onClick={() => setEditing(true)}                 
                             >
                                 Edit
                             </ActionButton>
@@ -160,8 +169,7 @@ const DetailForm = (props: IProps) => {
             )}
     
         </Modal>
-    
-        </>
+    </>
     )       
 }
 

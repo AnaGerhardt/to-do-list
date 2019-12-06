@@ -6,8 +6,9 @@ import DetailForm from '../Forms/DetailForm'
 export interface Item {
     id?: number
     checked?: boolean
-    dateitem?: Date | string
     listitem?: string
+    additionalnotes?: string
+    dateitem?: Date | string
     category?: string
     name?: string
     length?: number

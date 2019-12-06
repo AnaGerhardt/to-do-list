@@ -13,17 +13,11 @@
   }
 }
 
-/* @media (max-width: 480px) {
-  .root {
-      font-size: 0.8rem
-  }
-}
-
 @media (max-width: 480px) {
   .root {
-      font-size: 0.8rem
+      font-size: 0.8em;
   }
-} */
+}
 
 body {
     height: 100%;

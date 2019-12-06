@@ -12,13 +12,13 @@ import ListTable, { Item } from './Components/Tables/ListTable'
 const App = () => {
 
   const itemArray = [
-    { id: 1, listitem: 'Wash clothes', dateitem: undefined, category: undefined },
-    { id: 2, listitem: 'Take pets to the vet', dateitem: undefined, category: undefined},
-    { id: 3, listitem: 'Deposit money', dateitem: undefined, category: undefined },
+    { id: 1, listitem: 'Wash clothes', additionalnotes: 'Remember to wash the shoes', dateitem: '2019-12-10', category: 'Personal' },
+    { id: 2, listitem: 'Take pets to the vet', additionalnotes: 'Ask to brush their teeth too', dateitem: undefined, category: 'Personal'},
+    { id: 3, listitem: 'Deposit money', additionalnotes: '', dateitem: undefined, category: 'Personal' },
   ]
 
   const [list, setList] = useState<Item[]>(itemArray)
-  const initialFormState = { id: undefined, listitem: '', dateitem: undefined, category: undefined }
+  const initialFormState = { id: undefined, listitem: '', additionalnotes: '', dateitem: undefined, category: undefined }
   const [currentItem, setCurrentItem] = useState<Item>(initialFormState)
   const [theme, setTheme] = useState('light')
 
@@ -80,7 +80,13 @@ const App = () => {
   // }
 
   const editRow = (item: Item) => {
-    setCurrentItem({ id: item.id, checked: item.checked, listitem: item.listitem, category: item.category })
+    setCurrentItem({ 
+      id: item.id, 
+      checked: item.checked, 
+      listitem: item.listitem, 
+      additionalnotes: item.additionalnotes,
+      category: item.category 
+    })
   };
 
   const updateItem = (id: Item, updatedItem: Item) => {

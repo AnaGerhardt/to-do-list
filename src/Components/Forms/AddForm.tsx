@@ -13,7 +13,7 @@ interface IProps {
 const AddForm = (props: IProps) => {
 
 
-    const initialFormState = { id: undefined, listitem: '', dateitem: '', category: undefined }
+    const initialFormState = { id: undefined, listitem: '', additionalnotes: '', dateitem: '', category: undefined }
     const [item, setItem] = useState(initialFormState)
     const [show, setShow] = useState(false);
 
@@ -34,7 +34,7 @@ const AddForm = (props: IProps) => {
       <Modal centered show={show} onHide={handleClose}>
 
         <Modal.Header closeButton>
-          <Modal.Title>Add a New Task</Modal.Title>
+          <Modal.Title>Add a new task</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -54,6 +54,16 @@ const AddForm = (props: IProps) => {
                         value={item.listitem}
                         onChange={handleInputChange}
                         placeholder="New task" 
+                    />      
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control
+                        type="text" 
+                        name="additionalnotes"
+                        value={item.additionalnotes}
+                        onChange={handleInputChange}
+                        placeholder="Additional notes" 
                     />      
                 </Form.Group>
 
