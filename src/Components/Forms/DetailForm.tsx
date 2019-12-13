@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Modal, Form, Row, Col } from 'react-bootstrap'
 import { TaskButton, ActionButton } from '../../Styles/StyledComponents'
 import { Item } from '../Tables/ListTable'
 import Categories from '../Categories'
 
 interface IProps {
-    currentItem?: Item
     item: Item
-    editRow: Function
     updateItem: Function
     deleteItem: Function
 }
@@ -15,26 +13,21 @@ interface IProps {
 const DetailForm = (props: IProps) => {
 
     const [editing, setEditing] = useState(false)
-    const [item, setItem] = useState(props.currentItem)
+    const [item, setItem] = useState(props.item)
     const [show, setShow] = useState(false)
     const handleClose = () => { setShow(false); setEditing(false) }
-    const handleShow = () => { setShow(true); props.editRow(item) }
+    const handleShow = () => { setShow(true) }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setItem({ ...item, [name]: value })
     }
 
-    useEffect(() => {
-        setItem(props.currentItem)
-    }, [props])
-
     return  (
     <>
-
         <TaskButton 
             onClick={handleShow} 
-            className={props.item.checked ? 'completed' : ''}
+            className={item.checked ? 'completed' : ''}
         >
             {props.item.listitem}
         </TaskButton>
@@ -50,9 +43,9 @@ const DetailForm = (props: IProps) => {
             <Modal.Body>
                 <Form
                     onSubmit={(event: { preventDefault: () => void; }) => {
-                        event.preventDefault()
                         handleClose()
-                        if (!props.item.listitem) return
+                        event.preventDefault()
+                        if (!item.listitem) return
                         props.updateItem(props.item.id, item)
                     }}
                 >
@@ -61,7 +54,8 @@ const DetailForm = (props: IProps) => {
                         <Form.Control
                             type="text" 
                             name="listitem"
-                            //value={props.item.listitem}
+                            placeholder={props.item.listitem}
+                            value={item.listitem}
                             onChange={handleInputChange} 
                         />      
                     </Form.Group>
@@ -70,7 +64,8 @@ const DetailForm = (props: IProps) => {
                         <Form.Control
                             type="text"
                             name="additionalnotes"
-                            //value={props.item.additionalnotes}
+                            placeholder={props.item.additionalnotes}
+                            value={item.additionalnotes}
                             onChange={handleInputChange}
                         />
                     </Form.Group>
@@ -89,7 +84,7 @@ const DetailForm = (props: IProps) => {
                         <Form.Control 
                             as="select"
                             name="category"
-                            value={props.item.category}
+                            value={item.category}
                             onChange={handleInputChange}
                             style={{'width':'70%'}}
                         > 

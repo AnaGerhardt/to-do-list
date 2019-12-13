@@ -20,10 +20,8 @@ interface IProps {
     map?: Function
     deleteItem: Function
     checkHandler: Function
-    editRow: Function
     updateItem: Function
     selectAll: Function
-    currentItem: Item
   }
 
 const ListTable = (props: Item & IProps) => {
@@ -51,8 +49,6 @@ const ListTable = (props: Item & IProps) => {
                         />
                         <DetailForm 
                             item={item}
-                            currentItem={props.currentItem} 
-                            editRow={props.editRow} 
                             updateItem={props.updateItem} 
                             deleteItem={props.deleteItem}
                         />

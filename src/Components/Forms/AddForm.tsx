@@ -4,7 +4,6 @@ import { Button } from '../../Styles/StyledComponents'
 import Categories from '../Categories'
 
 
-
 interface IProps {
     addItem: Function
 }

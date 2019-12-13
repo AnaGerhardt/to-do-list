@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import itemReducer from "./Redux/Reducers"
+import AddForm from './Components/Forms/AddForm'
+import ListTable, { Item } from './Components/Tables/ListTable'
 import { Container, Row, Col } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './Styles/Themes'
 import { ActionButton, MenuButton } from './Styles/StyledComponents'
-import AddForm from './Components/Forms/AddForm'
-import ListTable, { Item } from './Components/Tables/ListTable'
 //import Categories from './Components/Categories'
 
 
@@ -13,15 +15,15 @@ const App = () => {
 
   const itemArray = [
     { id: 1, listitem: 'Wash clothes', additionalnotes: 'Remember to wash the shoes', dateitem: '2019-12-10', category: 'Personal' },
-    { id: 2, listitem: 'Take pets to the vet', additionalnotes: 'Ask to brush their teeth too', dateitem: undefined, category: 'Personal'},
-    { id: 3, listitem: 'Deposit money', additionalnotes: '', dateitem: undefined, category: 'Personal' },
+    { id: 2, listitem: 'Take pets to the vet', additionalnotes: 'Ask to brush their teeth too', category: 'Personal'},
+    { id: 3, listitem: 'Deposit money', additionalnotes: '', category: 'Personal' },
   ]
 
-  const [list, setList] = useState<Item[]>(itemArray)
-  const initialFormState = { id: undefined, listitem: '', additionalnotes: '', dateitem: undefined, category: undefined }
-  const [currentItem, setCurrentItem] = useState<Item>(initialFormState)
-  const [theme, setTheme] = useState('light')
+  //const list = useSelector(state => state.list);
+  const dispatch = useDispatch();
 
+  const [list, setList] = useState<Item[]>(itemArray)
+  const [theme, setTheme] = useState('light')
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -40,7 +42,8 @@ const App = () => {
 
   const addItem = (item: Item) => {
     item.id = list.length + 1
-    setList([...list, item])
+    //setList([...list, item])
+    dispatch(addItem(item))
   }
 
   const deleteItem = (id: Item) => {
@@ -79,18 +82,19 @@ const App = () => {
   //   console.log(list)
   // }
 
-  const editRow = (item: Item) => {
-    setCurrentItem({ 
-      id: item.id, 
-      checked: item.checked, 
-      listitem: item.listitem, 
-      additionalnotes: item.additionalnotes,
-      category: item.category 
-    })
-  };
+  // const editRow = (item: Item) => {
+  //   setCurrentItem({ 
+  //     id: item.id, 
+  //     checked: item.checked, 
+  //     listitem: item.listitem, 
+  //     additionalnotes: item.additionalnotes,
+  //     category: item.category 
+  //   })
+  // }
 
   const updateItem = (id: Item, updatedItem: Item) => {
     setList(list.map(item => (item.id === id ? updatedItem : item)))
+    console.log(list)
   }
 
 
@@ -130,9 +134,7 @@ const App = () => {
               setList={setList} 
               deleteItem={deleteItem}
               checkHandler={checkHandler}
-              editRow={editRow}
               updateItem={updateItem}
-              currentItem={currentItem}
               selectAll={selectAll}
             />
           </Col>
