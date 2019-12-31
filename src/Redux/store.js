@@ -1,4 +1,4 @@
 import { createStore } from "redux"
-import itemDataReducer from "./Reducers"
+import combineReducers from "./Reducers/"
 
-export default createStore(itemDataReducer)
+export default createStore(combineReducers)

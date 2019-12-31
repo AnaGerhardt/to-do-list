@@ -1,35 +1,41 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { handleChange } from '../../Redux/Actions'
 import { Modal, Form, Row, Col } from 'react-bootstrap'
 import { TaskButton, ActionButton } from '../../Styles/StyledComponents'
-import { Item } from '../Tables/ListTable'
+//import { Item } from '../Tables/ListTable'
 import Categories from '../Categories'
 
-interface IProps {
-    item: Item
-    updateItem: Function
-    deleteItem: Function
-}
+// interface IProps {
+//     item: Item
+//     // updateItem: Function
+//     // deleteItem: Function
+// }
 
-const DetailForm = (props: IProps) => {
+const DetailForm = (props) => {
+
+    const dispatch = useDispatch()
 
     const [editing, setEditing] = useState(false)
-    const [item, setItem] = useState(props.item)
+    const item = useSelector(state => props.item)
     const [show, setShow] = useState(false)
     const handleClose = () => { setShow(false); setEditing(false) }
     const handleShow = () => { setShow(true) }
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e/*: React.ChangeEvent<HTMLInputElement>*/) => {
         const { name, value } = e.target
-        setItem({ ...item, [name]: value })
+        dispatch(handleChange(name, value))
     }
 
     return  (
     <>
         <TaskButton 
             onClick={handleShow} 
-            className={item.checked ? 'completed' : ''}
+            style={{
+                textDecoration: props.item.completed ? 'line-through' : 'none'
+            }}
         >
-            {props.item.listitem}
+            {props.item.text}
         </TaskButton>
     
         <Modal centered show={show} onHide={handleClose}>
@@ -42,20 +48,20 @@ const DetailForm = (props: IProps) => {
 
             <Modal.Body>
                 <Form
-                    onSubmit={(event: { preventDefault: () => void; }) => {
+                    onSubmit={(event/*: { preventDefault: () => void; }*/) => {
                         handleClose()
                         event.preventDefault()
-                        if (!item.listitem) return
-                        props.updateItem(props.item.id, item)
+                        if (!item.text) return
+                        // props.updateItem(props.item.id, item)
                     }}
                 >
 
                     <Form.Group>
                         <Form.Control
                             type="text" 
-                            name="listitem"
-                            placeholder={props.item.listitem}
-                            value={item.listitem}
+                            name="text"
+                            placeholder={props.item.text}
+                            value={props.item.text}
                             onChange={handleInputChange} 
                         />      
                     </Form.Group>
@@ -63,9 +69,9 @@ const DetailForm = (props: IProps) => {
                     <Form.Group>
                         <Form.Control
                             type="text"
-                            name="additionalnotes"
-                            placeholder={props.item.additionalnotes}
-                            value={item.additionalnotes}
+                            name="notes"
+                            placeholder={props.item.notes}
+                            value={props.item.notes}
                             onChange={handleInputChange}
                         />
                     </Form.Group>
@@ -73,7 +79,7 @@ const DetailForm = (props: IProps) => {
                     <Form.Group>
                         <Form.Control
                             type="date"
-                            name="dateitem"
+                            name="date"
                             //value={item.dateitem}
                             onChange={handleInputChange}
                             style={{'width':'70%'}}
@@ -84,7 +90,7 @@ const DetailForm = (props: IProps) => {
                         <Form.Control 
                             as="select"
                             name="category"
-                            value={item.category}
+                            value={props.item.category}
                             onChange={handleInputChange}
                             style={{'width':'70%'}}
                         > 
@@ -109,7 +115,7 @@ const DetailForm = (props: IProps) => {
                     <Form.Group>
                         <Form.Control
                             type="text"
-                            value={props.item.listitem}                            
+                            value={props.item.text}                            
                             readOnly
                         />     
                     </Form.Group>
@@ -117,7 +123,7 @@ const DetailForm = (props: IProps) => {
                     <Form.Group>
                         <Form.Control
                             type="text"
-                            value={props.item.additionalnotes}
+                            value={props.item.notes}
                             readOnly
                         />
                     </Form.Group>
@@ -150,7 +156,7 @@ const DetailForm = (props: IProps) => {
                         </Col>
                         <Col style={{'paddingLeft': '0'}}>
                             <ActionButton 
-                                onClick={() => props.deleteItem(props.item.id)}                  
+                                // onClick={() => props.deleteItem(props.item.id)}                  
                             >
                                 Delete
                             </ActionButton>

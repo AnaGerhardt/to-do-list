@@ -1,28 +1,28 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { handleChange, addItem } from '../../Redux/Actions'
 import { Modal, Form } from 'react-bootstrap'
 import { Button } from '../../Styles/StyledComponents'
 import Categories from '../Categories'
 
 
-interface IProps {
-    addItem: Function
-}
+// interface IProps {
+//     addItem: Function
+// }
 
+const AddForm = () => {
 
-const AddForm = (props: IProps) => {
-
-
-    const initialFormState = { id: undefined, listitem: '', additionalnotes: '', dateitem: '', category: undefined }
-    const [item, setItem] = useState(initialFormState)
+    const dispatch = useDispatch() 
+    const item = useSelector(state => state.item)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (/*e: React.ChangeEvent<HTMLInputElement>*/e) => {
         const { name, value } = e.target
-        setItem({ ...item, [name]: value })
-    }    
+        dispatch(handleChange(name, value))
+    }
 
 
     return  (
@@ -38,19 +38,18 @@ const AddForm = (props: IProps) => {
 
         <Modal.Body>
             <Form
-                onSubmit={(event: { preventDefault: () => void; }) => {
+                onSubmit={(event) => {
                     event.preventDefault()
-                    if (!item.listitem) return
-                        props.addItem(item)
-                        setItem(initialFormState)
+                    if (!item.text) return
+                    dispatch(addItem(item))
+                    dispatch({type:"INITIAL_FORM"})
                 }}
             >
 
                 <Form.Group>
                     <Form.Control
                         type="text" 
-                        name="listitem"
-                        value={item.listitem}
+                        name="text"
                         onChange={handleInputChange}
                         placeholder="New task" 
                     />      
@@ -59,8 +58,7 @@ const AddForm = (props: IProps) => {
                 <Form.Group>
                     <Form.Control
                         type="text" 
-                        name="additionalnotes"
-                        value={item.additionalnotes}
+                        name="notes"
                         onChange={handleInputChange}
                         placeholder="Additional notes" 
                     />      
@@ -69,8 +67,7 @@ const AddForm = (props: IProps) => {
                 <Form.Group>
                     <Form.Control
                         type="date"
-                        name="dateitem"
-                        value={item.dateitem}
+                        name="date"
                         onChange={handleInputChange}
                         style={{'width':'70%'}}
                     />
@@ -80,7 +77,6 @@ const AddForm = (props: IProps) => {
                     <Form.Control 
                         as="select"
                         name="category"
-                        value={item.category}
                         onChange={handleInputChange}
                         style={{'width':'70%'}}
                     > 

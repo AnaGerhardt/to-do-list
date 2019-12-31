@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import itemReducer from "./Redux/Reducers"
+import Footer from './Components/Footer'
 import AddForm from './Components/Forms/AddForm'
-import ListTable, { Item } from './Components/Tables/ListTable'
+import ListTable from './Components/Tables/ListTable'
 import { Container, Row, Col } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './Styles/Themes'
@@ -13,17 +12,16 @@ import { ActionButton, MenuButton } from './Styles/StyledComponents'
 
 const App = () => {
 
-  const itemArray = [
-    { id: 1, listitem: 'Wash clothes', additionalnotes: 'Remember to wash the shoes', dateitem: '2019-12-10', category: 'Personal' },
-    { id: 2, listitem: 'Take pets to the vet', additionalnotes: 'Ask to brush their teeth too', category: 'Personal'},
-    { id: 3, listitem: 'Deposit money', additionalnotes: '', category: 'Personal' },
-  ]
+  // const itemArray = [
+  //   { id: 1, completed: false, listitem: 'Wash clothes', additionalnotes: 'Remember to wash the shoes', dateitem: '2019-12-10', category: 'Personal' },
+  //   { id: 2, listitem: 'Take pets to the vet', additionalnotes: 'Ask to brush their teeth too', category: 'Personal'},
+  //   { id: 3, listitem: 'Deposit money', additionalnotes: '', category: 'Personal' },
+  // ]
 
-  //const list = useSelector(state => state.list);
-  const dispatch = useDispatch();
-
-  const [list, setList] = useState<Item[]>(itemArray)
+  // const [list, setList] = useState<Item[]>(itemArray)
   const [theme, setTheme] = useState('light')
+
+ // const list = useSelector(state => [])
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -40,38 +38,38 @@ const App = () => {
       {'background':'grey', 'color': 'white'}
   )
 
-  const addItem = (item: Item) => {
-    item.id = list.length + 1
-    //setList([...list, item])
-    dispatch(addItem(item))
-  }
+  // const addItem = (item: Item) => {
+  //   item.id = list.length + 1
+  //   setList([...list, item])
+  // }
 
-  const deleteItem = (id: Item) => {
-    setList(list.filter((item: Item) => item.id !== id))
-  }
+  // const deleteItem = (id: Item) => {
+  //   setList(list.filter((item: Item) => item.id !== id))
+  // }
 
-  const checkHandler = (id: Item) => {
-    setList(
-      list.map (item => {
-        if (item.id === id) {
-            item.checked = !item.checked
-        }
-        return item
-      })
-    )
-  }
+  // const checkHandler = (id: Item, item: Item) => {
+  //   setList(
+  //     list.map (item => {
+  //       if (item.id === id) {
+  //           item.completed = !item.completed
+  //           dispatch(toggleItem(item.id))
+  //       }
+  //       return item
+  //     })
+  //   )
+  // }
 
-  const selectAll = () => {
-    setList(
-      list.filter (item => {
-        if ((item.checked === undefined) || (item.checked === false)) {
-            item.checked = true
-        }
-        else { item.checked = false }
-        return item
-      })
-    )
-  }
+  // const selectAll = () => {
+  //   setList(
+  //     list.filter (item => {
+  //       if ((item.completed === undefined) || (item.completed === false)) {
+  //           item.completed = true
+  //       }
+  //       else { item.completed = false }
+  //       return item
+  //     })
+  //   )
+  // }
 
   // const listFilter = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   setList(
@@ -92,10 +90,10 @@ const App = () => {
   //   })
   // }
 
-  const updateItem = (id: Item, updatedItem: Item) => {
-    setList(list.map(item => (item.id === id ? updatedItem : item)))
-    console.log(list)
-  }
+  // const updateItem = (id: Item, updatedItem: Item) => {
+  //   setList(list.map(item => (item.id === id ? updatedItem : item)))
+  //   console.log(list)
+  // }
 
 
   return (
@@ -104,7 +102,7 @@ const App = () => {
 
         <Row>
           <Col> 
-            <AddForm addItem={addItem} />
+            <AddForm />
           </Col>
           <Col style={{'textAlign':'right'}}>
             <ActionButton
@@ -130,13 +128,21 @@ const App = () => {
         <Row>
           <Col>
             <ListTable 
-              list={list} 
-              setList={setList} 
-              deleteItem={deleteItem}
-              checkHandler={checkHandler}
-              updateItem={updateItem}
-              selectAll={selectAll}
+              //list={list} 
+              // setList={setList} 
+              // deleteItem={deleteItem}
+              // //checkHandler={checkHandler}
+              // updateItem={updateItem}
+              // selectAll={selectAll}
             />
+          </Col>
+        </Row>
+
+        <br />
+
+        <Row>
+          <Col>
+            <Footer />
           </Col>
         </Row>
 
