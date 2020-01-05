@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleItem } from '../../Redux/Actions'
 import { Button, Table, Tr, Td } from '../../Styles/StyledComponents'
 import DetailForm from '../Forms/DetailForm'
 
@@ -50,13 +49,10 @@ const ListTable = () => {
                             onChange={ev => {
                                 item.completed = ev.currentTarget.checked
                             }}
-                            //onClick={() => props.checkHandler(item.id)}
-                            onClick={() => dispatch(toggleItem(item))}
+                            onClick={() => dispatch({type: 'TOGGLE_ITEM'})}
                         />
                         <DetailForm 
                             item={item}
-                            // updateItem={props.updateItem} 
-                            // deleteItem={props.deleteItem}
                         />
                     </Td>
                     <Td>
@@ -74,14 +70,14 @@ const ListTable = () => {
         </Table>
 
         <Button
-            // onClick={() => props.selectAll()}
+            onClick={() => dispatch({type: 'SELECT_ALL'})}
             style={{'marginRight':'10px'}}
         >
             Select All
         </Button>
 
         <Button
-            // onClick={() => props.setList(props.list.filter(item => !item.completed))}
+            onClick={() => dispatch({type: 'DELETE_ALL'})}
         >
             Delete All Checked
         </Button>

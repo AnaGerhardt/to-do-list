@@ -22,9 +22,27 @@ export const addItem = (item) => {
   }
 }
 
-export const toggleItem = (id) => ({
-  type: 'TOGGLE_ITEM',
+export const toggleItem = () => ({
+  type: 'TOGGLE_ITEM'
+})
+
+export const updateItem = (id, updatedItem) => ({
+  type: 'UPDATE_ITEM',
+  id,
+  updatedItem
+})
+
+export const deleteItem = (id) => ({
+  type: 'DELETE_ITEM',
   id
+})
+
+export const deleteAll = () => ({
+  type: 'DELETE_ALL'
+})
+
+export const selectAll = () => ({
+  type: 'SELECT_ALL'
 })
 
 export const setVisibilityFilter = filter => ({

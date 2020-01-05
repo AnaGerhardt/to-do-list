@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { handleChange } from '../../Redux/Actions'
+import { deleteItem, updateItem } from '../../Redux/Actions'
 import { Modal, Form, Row, Col } from 'react-bootstrap'
 import { TaskButton, ActionButton } from '../../Styles/StyledComponents'
 //import { Item } from '../Tables/ListTable'
@@ -16,15 +16,30 @@ const DetailForm = (props) => {
 
     const dispatch = useDispatch()
 
+    const initialForm = { id: undefined, completed: false, text: '', notes: '', date: '', category: undefined }
+
     const [editing, setEditing] = useState(false)
-    const item = useSelector(state => props.item)
+    const [currentItem, setCurrentItem] = useState(initialForm)
+    const item = useSelector(state => currentItem)
     const [show, setShow] = useState(false)
     const handleClose = () => { setShow(false); setEditing(false) }
     const handleShow = () => { setShow(true) }
 
+    const editRow = () => {
+        setEditing(true)
+        setCurrentItem({ 
+            id: props.item.id, 
+            completed: props.item.completed, 
+            text: props.item.text,
+            notes: props.item.notes,
+            category: props.item.category 
+        })
+    }
+
     const handleInputChange = (e/*: React.ChangeEvent<HTMLInputElement>*/) => {
         const { name, value } = e.target
-        dispatch(handleChange(name, value))
+        //dispatch(handleChange(name, value))
+        setCurrentItem({...currentItem, [name]: value})
     }
 
     return  (
@@ -51,8 +66,9 @@ const DetailForm = (props) => {
                     onSubmit={(event/*: { preventDefault: () => void; }*/) => {
                         handleClose()
                         event.preventDefault()
+                        setEditing(false)
                         if (!item.text) return
-                        // props.updateItem(props.item.id, item)
+                        dispatch(updateItem(currentItem.id, currentItem))
                     }}
                 >
 
@@ -61,7 +77,7 @@ const DetailForm = (props) => {
                             type="text" 
                             name="text"
                             placeholder={props.item.text}
-                            value={props.item.text}
+                            value={item.text}
                             onChange={handleInputChange} 
                         />      
                     </Form.Group>
@@ -71,7 +87,7 @@ const DetailForm = (props) => {
                             type="text"
                             name="notes"
                             placeholder={props.item.notes}
-                            value={props.item.notes}
+                            value={item.notes}
                             onChange={handleInputChange}
                         />
                     </Form.Group>
@@ -80,7 +96,7 @@ const DetailForm = (props) => {
                         <Form.Control
                             type="date"
                             name="date"
-                            //value={item.dateitem}
+                            value={item.dateitem}
                             onChange={handleInputChange}
                             style={{'width':'70%'}}
                         />
@@ -90,7 +106,7 @@ const DetailForm = (props) => {
                         <Form.Control 
                             as="select"
                             name="category"
-                            value={props.item.category}
+                            value={item.category}
                             onChange={handleInputChange}
                             style={{'width':'70%'}}
                         > 
@@ -149,14 +165,14 @@ const DetailForm = (props) => {
                     <Row>
                         <Col>
                             <ActionButton 
-                                onClick={() => setEditing(true)}                 
+                                onClick={() => editRow()}                 
                             >
                                 Edit
                             </ActionButton>
                         </Col>
                         <Col style={{'paddingLeft': '0'}}>
                             <ActionButton 
-                                // onClick={() => props.deleteItem(props.item.id)}                  
+                                onClick={() => dispatch(deleteItem(props.item.id))}                  
                             >
                                 Delete
                             </ActionButton>

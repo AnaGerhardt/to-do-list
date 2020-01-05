@@ -12,16 +12,7 @@ import { ActionButton, MenuButton } from './Styles/StyledComponents'
 
 const App = () => {
 
-  // const itemArray = [
-  //   { id: 1, completed: false, listitem: 'Wash clothes', additionalnotes: 'Remember to wash the shoes', dateitem: '2019-12-10', category: 'Personal' },
-  //   { id: 2, listitem: 'Take pets to the vet', additionalnotes: 'Ask to brush their teeth too', category: 'Personal'},
-  //   { id: 3, listitem: 'Deposit money', additionalnotes: '', category: 'Personal' },
-  // ]
-
-  // const [list, setList] = useState<Item[]>(itemArray)
   const [theme, setTheme] = useState('light')
-
- // const list = useSelector(state => [])
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -38,60 +29,12 @@ const App = () => {
       {'background':'grey', 'color': 'white'}
   )
 
-  // const addItem = (item: Item) => {
-  //   item.id = list.length + 1
-  //   setList([...list, item])
-  // }
-
-  // const deleteItem = (id: Item) => {
-  //   setList(list.filter((item: Item) => item.id !== id))
-  // }
-
-  // const checkHandler = (id: Item, item: Item) => {
-  //   setList(
-  //     list.map (item => {
-  //       if (item.id === id) {
-  //           item.completed = !item.completed
-  //           dispatch(toggleItem(item.id))
-  //       }
-  //       return item
-  //     })
-  //   )
-  // }
-
-  // const selectAll = () => {
-  //   setList(
-  //     list.filter (item => {
-  //       if ((item.completed === undefined) || (item.completed === false)) {
-  //           item.completed = true
-  //       }
-  //       else { item.completed = false }
-  //       return item
-  //     })
-  //   )
-  // }
-
   // const listFilter = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   setList(
   //     list.filter (item => 
   //       item.category === e.currentTarget.value
   //     )
   //   )
-  //   console.log(list)
-  // }
-
-  // const editRow = (item: Item) => {
-  //   setCurrentItem({ 
-  //     id: item.id, 
-  //     checked: item.checked, 
-  //     listitem: item.listitem, 
-  //     additionalnotes: item.additionalnotes,
-  //     category: item.category 
-  //   })
-  // }
-
-  // const updateItem = (id: Item, updatedItem: Item) => {
-  //   setList(list.map(item => (item.id === id ? updatedItem : item)))
   //   console.log(list)
   // }
 
@@ -127,14 +70,7 @@ const App = () => {
 
         <Row>
           <Col>
-            <ListTable 
-              //list={list} 
-              // setList={setList} 
-              // deleteItem={deleteItem}
-              // //checkHandler={checkHandler}
-              // updateItem={updateItem}
-              // selectAll={selectAll}
-            />
+            <ListTable />
           </Col>
         </Row>
 
