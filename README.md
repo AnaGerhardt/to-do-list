@@ -7,6 +7,7 @@ Hi! This project was created to study front-end development with React, from bas
 ## Stack
 
 - Reactjs + Hooks
+- Redux
 - Typescript
 - Styled-components
 - React-bootstrap
