@@ -1,4 +1,4 @@
-const initialForm = { id: undefined, completed: false, text: '', notes: '', date: '', category: undefined }
+const initialForm = { id: undefined, completed: false, text: '', notes: '', date: '', category: 'Family' }
 
 const item = (state = initialForm, action) => {
     switch (action.type) {

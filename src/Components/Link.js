@@ -1,17 +1,15 @@
 import React from 'react'
-import { Button } from '../Styles/StyledComponents'
 
 const Link = ({ active, children, onClick }) => (
-  <Button
+  <button
     onClick={onClick}
     disabled={active}
     style={{
-      marginLeft: '7px',
-      fontSize: '0.8em'
+      marginLeft: '4px'
     }}
   >
     {children}
-  </Button>
+  </button>
 )
 
 export default Link

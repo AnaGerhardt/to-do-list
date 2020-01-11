@@ -1,34 +1,23 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Button, Table, Tr, Td } from '../../Styles/StyledComponents'
 import DetailForm from '../Forms/DetailForm'
-
 
 // export interface Item {
 //     id?: number
 //     completed?: boolean
-//     listitem?: string
-//     additionalnotes?: string
-//     dateitem?: Date | string
+//     text?: string
+//     notes?: string
+//     date?: Date | string
 //     category?: string
 //     name?: string
 //     length?: number
 // }
 
-// interface IProps {
-//     list: Item[]
-//     setList: Dispatch<SetStateAction<Object[]>>
-//     map?: Function
-//     deleteItem: Function
-//     //checkHandler: Function
-//     updateItem: Function
-//     selectAll: Function
-//   }
-
-const ListTable = () => {
+const ListTable = ({list}) => {
 
     const dispatch = useDispatch()
-    const list = useSelector(state => state.list)
+    //const list = useSelector((state: any) => state.list)
 
     return (
     <>
@@ -41,7 +30,7 @@ const ListTable = () => {
             </thead>
             <tbody>
                 {list.length > 0 ? (
-                list.map(item => (    
+                list.map((item) => (    
                     <Tr key={item.id}>
                     <Td><input
                             type="checkbox"

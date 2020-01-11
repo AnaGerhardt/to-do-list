@@ -6,20 +6,16 @@ import { Button } from '../../Styles/StyledComponents'
 import Categories from '../Categories'
 
 
-// interface IProps {
-//     addItem: Function
-// }
-
 const AddForm = () => {
 
     const dispatch = useDispatch() 
-    const item = useSelector(state => state.item)
+    const item = useSelector((state: any) => state.item)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleInputChange = (/*e: React.ChangeEvent<HTMLInputElement>*/e) => {
+    const handleInputChange = (e: any) => {
         const { name, value } = e.target
         dispatch(handleChange(name, value))
     }
@@ -38,7 +34,7 @@ const AddForm = () => {
 
         <Modal.Body>
             <Form
-                onSubmit={(event) => {
+                onSubmit={(event: { preventDefault: () => void; }) => {
                     event.preventDefault()
                     if (!item.text) return
                     dispatch(addItem(item))

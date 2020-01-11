@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Footer from './Components/Footer'
 import AddForm from './Components/Forms/AddForm'
-import ListTable from './Components/Tables/ListTable'
+import VisibleList from './Containers/VisibleList'
 import { Container, Row, Col } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './Styles/Themes'
@@ -70,7 +70,7 @@ const App = () => {
 
         <Row>
           <Col>
-            <ListTable />
+            <VisibleList />
           </Col>
         </Row>
 

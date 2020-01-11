@@ -8,5 +8,4 @@ const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
       return state
   }
 }
-
 export default visibilityFilter

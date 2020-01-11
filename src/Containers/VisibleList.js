@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import ListTable from '../Components/ListTable'
-import { toggleItem, VisibilityFilters } from '../Actions'
+import ListTable from '../Components/Tables/ListTable'
+import { VisibilityFilters } from '../Redux/Actions'
 
-const getVisibleList = (list, filter) => {
+const getVisibleTodos = (list, filter) => {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
       return list
@@ -14,16 +14,10 @@ const getVisibleList = (list, filter) => {
       throw new Error('Unknown filter: ' + filter)
   }
 }
-
 const mapStateToProps = state => ({
-  list: getVisibleList(state.list, state.visibilityFilter)
-})
-
-const mapDispatchToProps = dispatch => ({
-  toggleItem: id => dispatch(toggleItem(id))
+  list: getVisibleTodos(state.list, state.visibilityFilter)
 })
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
 )(ListTable)

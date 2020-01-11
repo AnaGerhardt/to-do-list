@@ -8,8 +8,6 @@ import Categories from '../Categories'
 
 // interface IProps {
 //     item: Item
-//     // updateItem: Function
-//     // deleteItem: Function
 // }
 
 const DetailForm = (props) => {
@@ -36,7 +34,7 @@ const DetailForm = (props) => {
         })
     }
 
-    const handleInputChange = (e/*: React.ChangeEvent<HTMLInputElement>*/) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target
         //dispatch(handleChange(name, value))
         setCurrentItem({...currentItem, [name]: value})
@@ -63,7 +61,7 @@ const DetailForm = (props) => {
 
             <Modal.Body>
                 <Form
-                    onSubmit={(event/*: { preventDefault: () => void; }*/) => {
+                    onSubmit={(event) => {
                         handleClose()
                         event.preventDefault()
                         setEditing(false)
@@ -96,7 +94,7 @@ const DetailForm = (props) => {
                         <Form.Control
                             type="date"
                             name="date"
-                            value={item.dateitem}
+                            //value={item.date}
                             onChange={handleInputChange}
                             style={{'width':'70%'}}
                         />
