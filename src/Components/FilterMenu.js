@@ -2,7 +2,7 @@ import React from 'react'
 import { VisibilityFilters } from '../Redux/Actions'
 import FilterLink from '../Containers/FilterLink'
 
-const Footer = () => {
+const FilterMenu = () => {
 
   return (
     <>
@@ -15,4 +15,4 @@ const Footer = () => {
 }
 
 
-export default Footer
+export default FilterMenu

@@ -1,8 +1,9 @@
 import { connect } from 'react-redux'
 import ListTable from '../Components/Tables/ListTable'
-import { VisibilityFilters } from '../Redux/Actions'
+import { VisibilityFilters, CategoryFilters } from '../Redux/Actions'
 
-const getVisibleTodos = (list, filter) => {
+
+const getVisibleList = (list, filter) => {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
       return list
@@ -14,8 +15,27 @@ const getVisibleTodos = (list, filter) => {
       throw new Error('Unknown filter: ' + filter)
   }
 }
+
+const getCategoryList = (list, filter) => {
+  switch (filter) {
+    case CategoryFilters.SHOW_ALL:
+      return list
+    case CategoryFilters.SHOW_FAMILY:
+      return list.filter(t => t.category === 'Family')
+    case CategoryFilters.SHOW_PERSONAL:
+      return list.filter(t => t.category === 'Personal')
+    case CategoryFilters.SHOW_TRAVEL:
+      return list.filter(t => t.category === 'Travel')
+    case CategoryFilters.SHOW_WORK:
+      return list.filter(t => t.category === 'Work')
+    default:
+      throw new Error('Unknown filter: ' + filter)
+  }
+}
+
+
 const mapStateToProps = state => ({
-  list: getVisibleTodos(state.list, state.visibilityFilter)
+  list: getCategoryList(getVisibleList(state.list, state.visibilityFilter), state.categoryFilter)
 })
 
 export default connect(

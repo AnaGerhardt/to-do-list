@@ -21,7 +21,7 @@ export const MenuButton = styled.button`
   color: ${({theme}) => theme.color};
   border: none;
   border-right: 1px solid ${({theme}) => theme.color};
-  padding: 5px 10px 5px 10px;
+  padding: 2px 10px 2px 10px;
   &:hover {
     text-decoration: underline;
   }

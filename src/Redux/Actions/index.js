@@ -50,8 +50,21 @@ export const setVisibilityFilter = filter => ({
   filter
 })
 
+export const setCategoryFilter = filter => ({
+  type: 'SET_CATEGORY_FILTER',
+  filter
+})
+
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
   SHOW_ACTIVE: 'SHOW_ACTIVE'
+}
+
+export const CategoryFilters = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_FAMILY: 'SHOW_FAMILY',
+  SHOW_PERSONAL: 'SHOW_PERSONAL',
+  SHOW_TRAVEL: 'SHOW_TRAVEL',
+  SHOW_WORK: 'SHOW_WORK'
 }
