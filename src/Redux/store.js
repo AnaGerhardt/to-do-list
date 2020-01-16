@@ -1,4 +1,11 @@
-import { createStore } from "redux"
+import { createStore, applyMiddleware } from "redux"
 import combineReducers from "./Reducers"
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
 
-export default createStore(combineReducers)
+const loggerMiddleware = createLogger()
+
+export default createStore(
+    combineReducers, 
+    applyMiddleware(thunkMiddleware, loggerMiddleware)
+)

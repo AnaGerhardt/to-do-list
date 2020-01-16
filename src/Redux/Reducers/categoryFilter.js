@@ -1,4 +1,4 @@
-import { CategoryFilters } from '../Actions'
+import { CategoryFilters } from '../Constants'
 
 const categoryFilter = (state = CategoryFilters.SHOW_ALL, action) => {
   switch (action.type) {

@@ -1,15 +1,27 @@
 import React, { useState } from 'react'
-import FilterCategoryMenu from './Components/CategoryFilterMenu'
-import FilterMenu from './Components/FilterMenu'
-import AddForm from './Components/Forms/AddForm'
-import VisibleList from './Containers/VisibleList'
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './Styles/Themes'
 import { ActionButton } from './Styles/StyledComponents'
 
+import { history } from './Helpers/history'
+import { alertActions } from './Redux/Actions'
+// import { PrivateRoute } from './Components'
+// import { HomePage } from '../HomePage';
+import { LoginPage } from './LoginPage'
+// import { RegisterPage } from '../RegisterPage';
 
-const App = () => {
+
+const App = (props) => {
+
+  history.listen((location, action) => {
+    // clear alert on location change
+    props.clearAlerts()
+  })
+
+  const { alert } = props
 
   const [theme, setTheme] = useState('light')
 
@@ -34,9 +46,7 @@ const App = () => {
       <Container className="root" style={rootStyle}>
 
         <Row>
-          <Col> 
-            <AddForm />
-          </Col>
+          <Col></Col>
           <Col style={{'textAlign':'right'}}>
             <ActionButton
               onClick={toggleTheme}
@@ -48,23 +58,19 @@ const App = () => {
 
         <br />
 
-        <Row style={{'marginTop':'20px'}}>
-          <Col style={{'textAlign':'center'}}>
-            <FilterCategoryMenu /> 
-          </Col>
-        </Row>
-
         <Row>
-          <Col>
-            <VisibleList />
-          </Col>
-        </Row>
-
-        <br />
-
-        <Row>
-          <Col>
-            <FilterMenu />
+          <Col sm-8 sm-offset-2>
+            {alert.message &&
+                <div className={`alert ${alert.type}`}>{alert.message}</div>
+            }
+            <Router history={history}>
+                <Switch>
+                    {/* <PrivateRoute exact path="/" component={HomePage} /> */}
+                    <Route path="/login" component={LoginPage} />
+                    {/*<Route path="/register" component={RegisterPage} />*/}
+                    <Redirect from="*" to="/" />
+                </Switch>
+            </Router>
           </Col>
         </Row>
 
@@ -73,4 +79,15 @@ const App = () => {
   );
 }
 
-export default App
+function mapState(state) {
+    const { alert } = state
+    return { alert }
+}
+
+const actionCreators = {
+    clearAlerts: alertActions.clear
+};
+
+const connectedApp = connect(mapState, actionCreators)(App);
+
+export { connectedApp as App }

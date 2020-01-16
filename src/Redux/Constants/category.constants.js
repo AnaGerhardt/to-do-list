@@ -1,0 +1,7 @@
+export const CategoryFilters = {
+    SHOW_ALL: 'SHOW_ALL',
+    SHOW_FAMILY: 'SHOW_FAMILY',
+    SHOW_PERSONAL: 'SHOW_PERSONAL',
+    SHOW_TRAVEL: 'SHOW_TRAVEL',
+    SHOW_WORK: 'SHOW_WORK'
+}
