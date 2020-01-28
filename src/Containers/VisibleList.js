@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ListTable from '../Components/Tables/ListTable'
-import { VisibilityFilters, CategoryFilters } from '../Redux/Actions'
+import { VisibilityFilters, CategoryFilters } from '../Redux/Constants'
 
 
 const getVisibleList = (list, filter) => {

@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Table, Tr, Td } from '../../Styles/StyledComponents'
-import DetailForm from '../Forms/DetailForm'
+import { DetailForm, AddForm } from '../../Components'
+import { Row, Col } from 'react-bootstrap'
 
 // export interface Item {
 //     id?: number
@@ -58,18 +59,23 @@ const ListTable = ({list}) => {
             </tbody>
         </Table>
 
-        <Button
-            onClick={() => dispatch({type: 'SELECT_ALL'})}
-            style={{'marginRight':'10px'}}
-        >
-            Select All
-        </Button>
-
-        <Button
-            onClick={() => dispatch({type: 'DELETE_ALL'})}
-        >
-            Delete All Checked
-        </Button>
+        <Row>
+            <Col> <AddForm /> </Col>
+            <Col className="text-right" sm="3">
+                <Button
+                    onClick={() => dispatch({type: 'SELECT_ALL'})}
+                >
+                    Select All
+            </Button>
+            </Col>
+            <Col>
+                <Button
+                    onClick={() => dispatch({type: 'DELETE_ALL'})}
+                >
+                    Delete All Checked
+                </Button>
+            </Col>
+        </Row>
     </>
     )
 }

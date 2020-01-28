@@ -6,16 +6,16 @@ import { Button } from '../../Styles/StyledComponents'
 import Categories from '../Categories'
 
 
-const AddForm = () => {
+export const AddForm = () => {
 
     const dispatch = useDispatch() 
-    const item = useSelector((state: any) => state.item)
+    const item = useSelector(state => state.item)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleInputChange = (e: any) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target
         dispatch(handleChange(name, value))
     }
@@ -34,7 +34,7 @@ const AddForm = () => {
 
         <Modal.Body>
             <Form
-                onSubmit={(event: { preventDefault: () => void; }) => {
+                onSubmit={(event) => {
                     event.preventDefault()
                     if (!item.text) return
                     dispatch(addItem(item))
@@ -93,5 +93,3 @@ const AddForm = () => {
     </>
     )       
 }
-
-export default AddForm

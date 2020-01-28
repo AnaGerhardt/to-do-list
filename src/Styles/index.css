@@ -2,25 +2,12 @@
 
 
 .root {
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 12px #888888;
-}
-
-@media (min-width: 480px) {
-  .root {
-      margin-top: 5%;
-  }
-}
-
-@media (max-width: 480px) {
-  .root {
-      font-size: 0.8em;
-  }
+  background: white;
+  padding: 30px 50px 50px 50px;
+  box-shadow: 0 0 12px #888888;
 }
 
 body {
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

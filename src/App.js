@@ -5,20 +5,19 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './Styles/Themes'
 import { ActionButton } from './Styles/StyledComponents'
-
 import { history } from './Helpers/history'
 import { alertActions } from './Redux/Actions'
-// import { PrivateRoute } from './Components'
-// import { HomePage } from '../HomePage';
+import { PrivateRoute } from './Components/PrivateRoute'
+import { HomePage } from './HomePage'
 import { LoginPage } from './LoginPage'
-// import { RegisterPage } from '../RegisterPage';
+import { RegisterPage } from './RegisterPage';
 
 
 const App = (props) => {
 
   history.listen((location, action) => {
-    // clear alert on location change
-    props.clearAlerts()
+      // clear alert on location change
+      props.clearAlerts()
   })
 
   const { alert } = props
@@ -36,7 +35,7 @@ const App = (props) => {
   const rootStyle = (
     (theme === 'light') ? 
       {'background':'white', 'color': 'grey'} 
-      : 
+    : 
       {'background':'grey', 'color': 'white'}
   )
 
@@ -46,7 +45,7 @@ const App = (props) => {
       <Container className="root" style={rootStyle}>
 
         <Row>
-          <Col></Col>
+          <Col><h4>Todo App</h4></Col>
           <Col style={{'textAlign':'right'}}>
             <ActionButton
               onClick={toggleTheme}
@@ -58,21 +57,17 @@ const App = (props) => {
 
         <br />
 
-        <Row>
-          <Col sm-8 sm-offset-2>
             {alert.message &&
                 <div className={`alert ${alert.type}`}>{alert.message}</div>
             }
             <Router history={history}>
                 <Switch>
-                    {/* <PrivateRoute exact path="/" component={HomePage} /> */}
+                    <PrivateRoute exact path="/" component={HomePage} />
                     <Route path="/login" component={LoginPage} />
-                    {/*<Route path="/register" component={RegisterPage} />*/}
+                    <Route path="/register" component={RegisterPage} />
                     <Redirect from="*" to="/" />
                 </Switch>
             </Router>
-          </Col>
-        </Row>
 
       </Container>
     </ThemeProvider>

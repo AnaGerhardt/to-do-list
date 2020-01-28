@@ -6,6 +6,7 @@ export const Button = styled.button`
   border: 1px solid ${({theme}) => theme.color};
   border-radius: 3px;
   padding: 5px;
+  font-size: 14px;
 `
 
 export const ActionButton = styled.button`

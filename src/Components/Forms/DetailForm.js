@@ -10,7 +10,7 @@ import Categories from '../Categories'
 //     item: Item
 // }
 
-const DetailForm = (props) => {
+export const DetailForm = (props) => {
 
     const dispatch = useDispatch()
 
@@ -187,5 +187,3 @@ const DetailForm = (props) => {
     </>
     )       
 }
-
-export default DetailForm

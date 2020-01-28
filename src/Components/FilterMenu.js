@@ -1,8 +1,8 @@
 import React from 'react'
-import { VisibilityFilters } from '../Redux/Actions'
+import { VisibilityFilters } from '../Redux/Constants'
 import FilterLink from '../Containers/FilterLink'
 
-const FilterMenu = () => {
+export const FilterMenu = () => {
 
   return (
     <>
@@ -13,6 +13,3 @@ const FilterMenu = () => {
     </>
   )
 }
-
-
-export default FilterMenu

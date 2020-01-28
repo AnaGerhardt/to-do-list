@@ -1,74 +1,88 @@
-import React, { useState } from 'react'
+import React  from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Col } from 'react-bootstrap'
-
+import { Form } from 'react-bootstrap'
+import { ActionButton, MenuButton } from './Styles/StyledComponents'
 import { userActions } from './Redux/Actions'
 
-const LoginPage = (props) => {
-    //reset login status
-    props.logout()
 
-    const loginArray = { username: '', password: '', submitted: false }
+class LoginPage extends React.Component {
+    constructor(props) {
+        super(props);
 
-    const [loginStatus, setLoginStatus] = useState(loginArray)
+        // reset login status
+        this.props.logout();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setLoginStatus({ [name]: value })
+        this.state = {
+            username: '',
+            password: '',
+            submitted: false
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setLoginStatus({ submitted: true })
-        const { username, password } = loginStatus
+    handleChange(e) {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        this.setState({ submitted: true });
+        const { username, password } = this.state;
         if (username && password) {
-            props.login(username, password)
+            this.props.login(username, password);
         }
     }
 
-    const { loggingIn } = props
-    const { username, password, submitted } = loginStatus
+    render() {
+        const { loggingIn } = this.props;
+        const { username, password, submitted } = this.state;
 
-    return (
-        <Col md="6" md-offset="3">
-            <h2>Login</h2>
-            <form name="form" onSubmit={handleSubmit}>
-                <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
-                    <label htmlFor="username">Username</label>
-                    <input type="text" className="form-control" name="username" value={username} onChange={handleChange} />
+        return (
+        <>
+            <Form name="form" onSubmit={this.handleSubmit}>
+                <Form.Group className={(submitted && !username ? ' has-error' : '')}>
+                    <Form.Label htmlFor="username">Username</Form.Label>
+                    <Form.Control type="text" name="username" value={username} onChange={this.handleChange} />
                     {submitted && !username &&
                         <div className="help-block">Username is required</div>
                     }
-                </div>
-                <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" name="password" value={password} onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className={(submitted && !password ? ' has-error' : '')}>
+                    <Form.Label htmlFor="password">Password</Form.Label>
+                    <Form.Control type="password" name="password" value={password} onChange={this.handleChange} />
                     {submitted && !password &&
                         <div className="help-block">Password is required</div>
                     }
-                </div>
-                <div className="form-group">
-                    <button className="btn btn-primary">Login</button>
+                </Form.Group>
+                <Form.Group>
+                    <ActionButton>Login</ActionButton>
                     {loggingIn &&
-                        <img alt="" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                     }
-                    <Link to="/register" className="btn btn-link">Register</Link>
-                </div>
-            </form>
-        </Col>
-    );
+                    <Link to="/register">
+                        <MenuButton style={{'border': 'none'}}>Register</MenuButton>
+                    </Link>
+                </Form.Group>
+            </Form>
+        </>
+        );
+    }
 }
 
 function mapState(state) {
-    const { loggingIn } = state.authentication;
-    return { loggingIn };
+    const { loggingIn } = state.authentication
+    return { loggingIn }
 }
 
 const actionCreators = {
     login: userActions.login,
     logout: userActions.logout
-};
+}
 
-const connectedLoginPage = connect(mapState, actionCreators)(LoginPage);
-export { connectedLoginPage as LoginPage };
+const connectedLoginPage = connect(mapState, actionCreators)(LoginPage)
+export { connectedLoginPage as LoginPage }

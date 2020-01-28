@@ -1,8 +1,8 @@
 import React from 'react'
-import { CategoryFilters } from '../Redux/Actions'
+import { CategoryFilters } from '../Redux/Constants'
 import FilterCategoryLink from '../Containers/FilterCategoryLink'
 
-const FilterCategoryMenu = () => {
+export const FilterCategoryMenu = () => {
 
   return (
     <>
@@ -14,6 +14,3 @@ const FilterCategoryMenu = () => {
     </>
   )
 }
-
-
-export default FilterCategoryMenu
