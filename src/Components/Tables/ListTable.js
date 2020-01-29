@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Table, Tr, Td } from '../../Styles/StyledComponents'
-import { DetailForm, AddForm } from '../../Components'
+import { DetailForm, AddForm } from '..'
 import { Row, Col } from 'react-bootstrap'
 
 // export interface Item {
