@@ -65,6 +65,7 @@ const App = (props) => {
                     <PrivateRoute exact path="/" component={HomePage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/register" component={RegisterPage} />
+                    <Route path="/homepage" component={HomePage} />
                     <Redirect from="*" to="/" />
                 </Switch>
             </Router>

@@ -62,6 +62,6 @@
     "start": "webpack-dev-server --open",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -b master"
+    "deploy": "gh-pages -d dist"
   }
 }

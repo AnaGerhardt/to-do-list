@@ -67,6 +67,9 @@ class LoginPage extends React.Component {
                     <Link to="/register">
                         <MenuButton style={{'border': 'none'}}>Register</MenuButton>
                     </Link>
+                    <Link to="/homepage">
+                        <MenuButton style={{'border': 'none'}}>Skip</MenuButton>
+                    </Link>
                 </Form.Group>
             </Form>
         </>

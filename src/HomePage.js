@@ -1,24 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { userActions } from './Redux/Actions'
+// import { connect } from 'react-redux'
+// import { userActions } from './Redux/Actions'
 import VisibleList from './Containers/VisibleList'
 import { FilterCategoryMenu, FilterMenu } from './Components'
 
-class HomePage extends React.Component {
-    componentDidMount() {
-        this.props.getUsers();
-    }
+export class HomePage extends React.Component {
+    // componentDidMount() {
+    //     this.props.getUsers();
+    // }
 
-    handleDeleteUser(id) {
-        return (e) => this.props.deleteUser(id);
-    }
+    // handleDeleteUser(id) {
+    //     return (e) => this.props.deleteUser(id);
+    // }
 
     render() {
-        const { user, users } = this.props;
+        // const { user, users } = this.props;
         return (
             <>
-                <h5>Hi {user.firstName}!</h5>
+                {/* <h5>Hi {user.firstName}!</h5> */}
                 {/* <h3>All registered users:</h3>
                 {users.loading && <em>Loading users...</em>}
                 {users.error && <span className="text-danger">ERROR: {users.error}</span>}
@@ -57,16 +57,16 @@ class HomePage extends React.Component {
     }
 }
 
-function mapState(state) {
-    const { users, authentication } = state;
-    const { user } = authentication;
-    return { user, users };
-}
+// function mapState(state) {
+//     const { users, authentication } = state;
+//     const { user } = authentication;
+//     return { user, users };
+// }
 
-const actionCreators = {
-    getUsers: userActions.getAll,
-    deleteUser: userActions.delete
-}
+// const actionCreators = {
+//     getUsers: userActions.getAll,
+//     deleteUser: userActions.delete
+// }
 
-const connectedHomePage = connect(mapState, actionCreators)(HomePage);
-export { connectedHomePage as HomePage };
+// const connectedHomePage = connect(mapState, actionCreators)(HomePage);
+// export { connectedHomePage as HomePage };
