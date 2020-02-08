@@ -6,15 +6,14 @@ export const Button = styled.button`
   border: 1px solid ${({theme}) => theme.color};
   border-radius: 3px;
   padding: 5px;
-  font-size: 14px;
 `
 
 export const ActionButton = styled.button`
-  background: ${({theme}) => theme.color};
-  color: ${({theme}) => theme.bg};
-  border: 1px solid ${({theme}) => theme.color};
+  background: ${({theme}) => theme.buttonbg};
+  color: white;
+  border: 1px solid ${({theme}) => theme.buttonbg};
   border-radius: 3px;
-  padding: 5px;
+  padding: 5px 10px 5px 10px;
 `
 
 export const MenuButton = styled.button`
@@ -29,11 +28,17 @@ export const MenuButton = styled.button`
 `
 
 export const TaskButton = styled.button`
-  background: none;
-  color: inherit;
+  box-shadow: 0 5px 15px -8px grey;
+  background: ${({theme}) => theme.taskbg};
+  border-radius: 5px;
+  margin-top: 8px;
+  padding: 15px;
+  color: ${({theme}) => theme.color};
+  text-align: left;
+  font-weight: 700;
   border: none;
   &:hover {
-    text-decoration: underline;
+    cursor: pointer;
   }
 `
 

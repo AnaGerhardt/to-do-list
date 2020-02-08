@@ -1,8 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Button, Table, Tr, Td } from '../../Styles/StyledComponents'
+import { Button, Table, Tr, Td, TaskButton, ActionButton } from '../../Styles/StyledComponents'
 import { DetailForm, AddForm } from '..'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, ListGroup } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 // export interface Item {
 //     id?: number
@@ -21,12 +23,39 @@ const ListTable = ({list}) => {
     //const list = useSelector((state: any) => state.list)
 
     return (
-    <>
-        <Table>
+    <>              
+        <Row>
+             <Col> <AddForm /> </Col>
+        </Row>
+        <ul style={{'margin':'0 0 15px 0'}}>
+        {list.length > 0 ? (
+            list.map((item) => (    
+                <li key={item.id} onClick={() => dispatch({type: 'TOGGLE_ITEM'})}>
+                    <TaskButton 
+                        className={(item.completed ? 'completedtask taskbutton' : 'taskbutton')} 
+                        onClick={() => {item.completed = !item.completed}}
+                    >
+                        <div
+                            className={(item.completed ? 'checkmark' : 'checkbox-round')} 
+                            style={{'display':'inline-block'}}  
+                            value={item.completed}
+                        >
+                            {item.completed ? <FontAwesomeIcon icon={faCheck} /> : ''}
+                        </div>
+                        {item.text}
+                    </TaskButton>
+                </li>
+            ))
+            ) : (
+                <h5 style={{'margin': '20px 0 20px 0'}}>No tasks to show.</h5>
+        )}
+        </ul>
+
+    
+        {/* <Table>
             <thead>
                 <Tr>
                 <th>Tasks</th>
-                <th>Date</th>
                 </Tr>
             </thead>
             <tbody>
@@ -45,35 +74,30 @@ const ListTable = ({list}) => {
                             item={item}
                         />
                     </Td>
-                    <Td>
-                        {item.date}
-                    </Td>
                     </Tr>
                 ))
                 ) : (
                     <Tr>
                         <Td>No items yet.</Td>
-                        <Td></Td>
                     </Tr>
                 )}
             </tbody>
-        </Table>
+        </Table> */}
 
-        <Row>
-            <Col> <AddForm /> </Col>
-            <Col className="text-right" sm="3">
-                <Button
+        <Row noGutters style={{'textAlign':'right', 'margin': '30px 0 40px 0'}}>
+            <Col style={{'float':'right'}}> 
+                <ActionButton
                     onClick={() => dispatch({type: 'SELECT_ALL'})}
                 >
                     Select All
-            </Button>
+            </ActionButton>
             </Col>
             <Col>
-                <Button
+                <ActionButton
                     onClick={() => dispatch({type: 'DELETE_ALL'})}
                 >
                     Delete All Checked
-                </Button>
+                </ActionButton>
             </Col>
         </Row>
     </>

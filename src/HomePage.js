@@ -6,6 +6,7 @@ import VisibleList from './Containers/VisibleList'
 import { FilterCategoryMenu, FilterMenu } from './Components'
 
 export class HomePage extends React.Component {
+
     // componentDidMount() {
     //     this.props.getUsers();
     // }
@@ -39,17 +40,14 @@ export class HomePage extends React.Component {
 
                 <br />
 
-                <div align="center">
+                {/* <div align="right">
                   <FilterCategoryMenu />
-                </div>
+                  <FilterMenu />
+                </div> */}
 
                 <VisibleList />
 
-                <br /><br />
-                
-                <FilterMenu />
-
-                <p style={{'margin':'30px 0 0 0'}}>
+                <p align="right">
                     <Link to="/login">Logout</Link>
                 </p>
             </>

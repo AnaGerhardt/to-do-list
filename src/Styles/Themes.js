@@ -1,9 +1,13 @@
 export const lightTheme = {
-    color: '#1890ff',
+    color: '#232e4d',
+    buttonbg: '#232e4d',
+    taskbg: 'white',
     bg: 'white'
 }
   
 export const darkTheme = {
     color: 'white',
-    bg: 'grey'
+    buttonbg: 'grey',
+    taskbg: 'grey',
+    bg: '#232326'
 }

@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleChange, addItem } from '../../Redux/Actions'
-import { Modal, Form } from 'react-bootstrap'
-import { Button } from '../../Styles/StyledComponents'
+import { Modal, Form, Row, Col } from 'react-bootstrap'
+import { Button, ActionButton } from '../../Styles/StyledComponents'
 import Categories from '../Categories'
 
 
-export const AddForm = () => {
+export const AddForm = (props) => {
+
+    const {theme} = props
 
     const dispatch = useDispatch() 
     const item = useSelector(state => state.item)
@@ -23,13 +25,24 @@ export const AddForm = () => {
 
     return  (
     <>
-
-      <Button onClick={handleShow}>Add a new task</Button>
+        <Row style={{'textAlign':'center'}}>
+            <Col>
+                <ActionButton 
+                    style={{'padding': '10px 120px 10px 120px', 'fontWeight':'300'}} 
+                    onClick={handleShow}
+                >
+                    + ADD A NEW TASK
+                </ActionButton>
+            </Col>
+        </Row>
 
       <Modal centered show={show} onHide={handleClose}>
 
-        <Modal.Header closeButton>
-          <Modal.Title>Add a new task</Modal.Title>
+        <Modal.Header 
+            closeButton 
+            style={{'background': '#232e4d', 'color':'white'}}
+        >
+            <Modal.Title>Add a new task</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -82,9 +95,9 @@ export const AddForm = () => {
                     </Form.Control>     
                 </Form.Group>
 
-                <Button type="submit" onClick={handleClose}>
+                <ActionButton type="submit" onClick={handleClose}>
                      Done!
-                </Button>
+                </ActionButton>
             </Form>
         </Modal.Body>
 

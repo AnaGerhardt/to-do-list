@@ -6,7 +6,7 @@ const FilterCategoryButtons = ({ active, children, onClick }) => (
     onClick={onClick}
     disabled={active}
     style={{
-      marginLeft: '4px'
+      marginLeft: '4px',
     }}
   >
     {children}

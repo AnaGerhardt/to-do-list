@@ -10,20 +10,22 @@ module.exports = {
         rules: [
             { test: /\.jsx?$/, loader: ['babel-loader', 'eslint-loader'] },
             {
-                test: /\.(css)$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [{
-                  loader: 'style-loader', // inject CSS to page
+                  loader: 'style-loader',
                 }, {
-                  loader: 'css-loader', // translates CSS into CommonJS modules
+                  loader: 'css-loader',
                 }, {
-                  loader: 'postcss-loader', // Run post css actions
+                  loader: 'postcss-loader',
                   options: {
-                    plugins: function () { // post css plugins, can be exported to postcss.config.js
+                    plugins: function () {
                       return [
                         require('autoprefixer')
                       ];
                     }
                   }
+                }, {
+                  loader: 'sass-loader'
                 }]
             },
             { test: /\.tsx$/, use: 'ts-loader' }

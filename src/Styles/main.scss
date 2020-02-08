@@ -1,0 +1,88 @@
+@media (min-width: 576px) {
+  .root {
+    padding-right: 50px !important;
+    padding-left: 50px !important;
+    margin-top: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 12px #888888;
+    max-width: 500px;
+  }
+  .taskbutton {
+    width: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    background: white !important;
+    font-size: 14px !important;
+  }
+}
+
+.root {
+  padding: 30px 30px 30px 30px;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  background: #dce3ec;
+}
+
+input:focus,
+input:active,
+button:active,
+button:focus {
+  outline: none;
+}
+
+:focus {
+  outline: none;
+}
+
+a, h5, a:hover {
+  color: #232e4d;
+}
+
+ul {
+  padding-inline-start: 0;
+  margin: 30px 0 50px 0;
+
+  li {
+    list-style-type: none;
+  }
+}
+
+
+.dark-theme {
+  color: white;
+  background-color: grey;
+}
+
+.checkbox-round {
+  margin-right: 20px;
+  width: 1.5em;
+  height: 1.5em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1.5px solid #ddd;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkmark {
+  margin-right: 20px;
+  margin-left: 8px;
+}
+
+.completedtask {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  text-decoration: line-through;
+}

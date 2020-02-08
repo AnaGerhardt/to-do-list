@@ -4,7 +4,8 @@ import { Provider } from "react-redux"
 import { App } from './App'
 import store from "./Redux/store"
 import { configureFakeBackend } from './Helpers'
-import './Styles/index.css'
+import 'bootstrap/scss/bootstrap.scss';
+import './Styles/main.scss';
 
 configureFakeBackend()
 
