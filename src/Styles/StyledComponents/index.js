@@ -5,7 +5,7 @@ export const Button = styled.button`
   color: ${({theme}) => theme.color};
   border: 1px solid ${({theme}) => theme.color};
   border-radius: 3px;
-  padding: 5px;
+  padding: 5px 10px 5px 10px;
 `
 
 export const ActionButton = styled.button`

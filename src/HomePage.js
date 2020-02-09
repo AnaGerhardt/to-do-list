@@ -2,8 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 // import { connect } from 'react-redux'
 // import { userActions } from './Redux/Actions'
+import { Row, Col } from 'react-bootstrap'
 import VisibleList from './Containers/VisibleList'
 import { FilterCategoryMenu, FilterMenu } from './Components'
+import { AddForm } from './Components/Forms/AddForm'
+import { Button } from './Styles/StyledComponents'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle, faFilter } from '@fortawesome/free-solid-svg-icons'
 
 export class HomePage extends React.Component {
 
@@ -18,7 +23,36 @@ export class HomePage extends React.Component {
     render() {
         // const { user, users } = this.props;
         return (
-            <>
+        <>
+            <Row noGutters>
+                <Col lg={2}>
+                    <FontAwesomeIcon icon={faUserCircle} size="3x" />
+                </Col>      
+                <Col align="left">
+                    <p style={{'margin': '10px auto 5px 0'}}>
+                        <Link to="/login">Logout</Link>
+                    </p>
+                </Col>
+            {/* <Col>
+                <div style={{'textAlign':'right'}}>
+                <ActionButton
+                    onClick={toggleTheme}
+                >
+                    {theme === 'light' ? 'Night Mode' : 'Light Mode'}
+                </ActionButton>
+                </div>
+            </Col> */}
+            </Row>   <br />
+
+            <Row align="right">
+                <Col>
+                    <Button>
+                        <FontAwesomeIcon icon={faFilter} size="sm" style={{'marginRight':'8px'}} />Filters 
+                    </Button>   
+                </Col>
+            </Row>
+
+            <br />
                 {/* <h5>Hi {user.firstName}!</h5> */}
                 {/* <h3>All registered users:</h3>
                 {users.loading && <em>Loading users...</em>}
@@ -38,18 +72,18 @@ export class HomePage extends React.Component {
                     </ul>
                 } */}
 
-                <br />
-
                 {/* <div align="right">
                   <FilterCategoryMenu />
                   <FilterMenu />
                 </div> */}
 
-                <VisibleList />
+                <Row>
+                    <Col> 
+                        <AddForm /> 
+                    </Col>
+                </Row>
 
-                <p align="right">
-                    <Link to="/login">Logout</Link>
-                </p>
+                <VisibleList />
             </>
         );
     }

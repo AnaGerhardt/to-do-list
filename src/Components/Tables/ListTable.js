@@ -1,10 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Button, Table, Tr, Td, TaskButton, ActionButton } from '../../Styles/StyledComponents'
-import { DetailForm, AddForm } from '..'
-import { Row, Col, ListGroup } from 'react-bootstrap'
+import { TaskButton, ActionButton, Button } from '../../Styles/StyledComponents'
+import { Row, Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faUserCircle, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 // export interface Item {
 //     id?: number
@@ -23,10 +22,7 @@ const ListTable = ({list}) => {
     //const list = useSelector((state: any) => state.list)
 
     return (
-    <>              
-        <Row>
-             <Col> <AddForm /> </Col>
-        </Row>
+    <>   
         <ul style={{'margin':'0 0 15px 0'}}>
         {list.length > 0 ? (
             list.map((item) => (    
@@ -84,7 +80,7 @@ const ListTable = ({list}) => {
             </tbody>
         </Table> */}
 
-        <Row noGutters style={{'textAlign':'right', 'margin': '30px 0 40px 0'}}>
+        <Row noGutters style={{'textAlign':'right', 'margin': '30px 0 10px 0'}}>
             <Col style={{'float':'right'}}> 
                 <ActionButton
                     onClick={() => dispatch({type: 'SELECT_ALL'})}

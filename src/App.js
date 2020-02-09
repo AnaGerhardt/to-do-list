@@ -44,24 +44,6 @@ const App = (props) => {
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Container className="root" style={rootStyle}>
 
-        <Row>
-          <Col>
-            <h5>Todo App</h5>
-          </Col>
-          
-          <Col>
-            <div style={{'textAlign':'right'}}>
-              <ActionButton
-                onClick={toggleTheme}
-              >
-                {theme === 'light' ? 'Night Mode' : 'Light Mode'}
-              </ActionButton>
-            </div>
-          </Col>
-        </Row>
-
-        <br />
-
         {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
@@ -74,6 +56,7 @@ const App = (props) => {
                 <Redirect from="*" to="/" />
             </Switch>
         </Router>
+        
       </Container>
     </ThemeProvider>
   );
