@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import theme from './theme'
 import list from './list'
 import item from './item'
 import visibilityFilter from './visibilityFilter'
@@ -9,6 +10,7 @@ import authentication from './authentication'
 import registration from './registration'
 
 export default combineReducers({
+  theme,
   list,
   item,
   visibilityFilter,

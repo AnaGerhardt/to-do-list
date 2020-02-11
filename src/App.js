@@ -20,17 +20,7 @@ const App = (props) => {
       props.clearAlerts()
   })
 
-  const { alert } = props
-
-  const [theme, setTheme] = useState('light')
-
-  const toggleTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
-  }
+  const { alert, theme } = props
 
   const rootStyle = (
     (theme === 'light') ? 
@@ -63,8 +53,8 @@ const App = (props) => {
 }
 
 function mapState(state) {
-    const { alert } = state
-    return { alert }
+    const { alert, theme } = state
+    return { alert, theme }
 }
 
 const actionCreators = {

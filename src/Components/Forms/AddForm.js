@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import { handleChange, addItem } from '../../Redux/Actions'
 import { Modal, Form, Row, Col } from 'react-bootstrap'
 import { Button, ActionButton } from '../../Styles/StyledComponents'
 import Categories from '../Categories'
 
 
-export const AddForm = (props) => {
-
-    const {theme} = props
+const AddForm = (props) => {
 
     const dispatch = useDispatch() 
     const item = useSelector(state => state.item)
     const [show, setShow] = useState(false);
+    const { theme } = props
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -40,12 +40,12 @@ export const AddForm = (props) => {
 
         <Modal.Header 
             closeButton 
-            style={{'background': '#232e4d', 'color':'white'}}
+            style={theme === 'light' ? {'background': '#232e4d', 'color':'white'} : {'backgroudColor':'#232326','color':'white'}}
         >
             <Modal.Title>Add a new task</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body style={theme === 'light' ? {'background': '#232e4d', 'color':'white'} : {'backgroud':'#232326','color':'white'}}>
             <Form
                 onSubmit={(event) => {
                     event.preventDefault()
@@ -106,3 +106,12 @@ export const AddForm = (props) => {
     </>
     )       
 }
+
+function mapState(state) {
+    const { theme } = state
+    return { theme }
+}
+
+const connectedAddForm = connect(mapState)(AddForm);
+
+export { connectedAddForm as AddForm }

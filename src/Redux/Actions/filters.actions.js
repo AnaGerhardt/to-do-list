@@ -1,3 +1,7 @@
+export const toggleTheme = () => ({
+    type: 'TOGGLE_THEME'
+})
+
 export const toggleItem = () => ({
     type: 'TOGGLE_ITEM'
   })
