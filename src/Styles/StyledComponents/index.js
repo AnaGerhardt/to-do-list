@@ -33,6 +33,7 @@ export const TaskButton = styled.button`
   border-radius: 5px;
   margin-top: 8px;
   padding: 15px;
+  width: 100%;
   color: ${({theme}) => theme.color};
   text-align: left;
   font-weight: 700;

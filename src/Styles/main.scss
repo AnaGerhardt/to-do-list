@@ -7,15 +7,15 @@
     box-shadow: 0 0 12px #888888;
     max-width: 500px;
   }
-  .taskbutton {
-    width: 400px;
-  }
 }
 
 @media (max-width: 576px) {
   body {
     background: white !important;
     font-size: 14px !important;
+  }
+  .root {
+    height: 100vh;
   }
 }
 
@@ -86,4 +86,9 @@ ul {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
   text-decoration: line-through;
+}
+
+.modal-custom {
+  background: #232326 !important;
+  color: white !important;
 }

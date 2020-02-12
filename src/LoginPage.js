@@ -66,7 +66,7 @@ class LoginPage extends React.Component {
                     style={{'display':'inline-block','marginLeft':'auto', 'marginRight':'auto', 'textAlign':'left'}}
                 >
                     <Row>
-                        <Col lg='12' md='6' sm='6' xs='8'>
+                        <Col>
                             <Form.Group className={(submitted && !username ? ' has-error' : '')}>
                                 <Form.Label htmlFor="username">Username</Form.Label>
                                 <Form.Control type="text" name="username" value={username} onChange={this.handleChange} />
@@ -77,7 +77,7 @@ class LoginPage extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg='12' md='6' sm='6' xs='8'>
+                        <Col>
                             <Form.Group className={(submitted && !password ? ' has-error' : '')}>
                                 <Form.Label htmlFor="password">Password</Form.Label>
                                 <Form.Control type="password" name="password" value={password} onChange={this.handleChange} />

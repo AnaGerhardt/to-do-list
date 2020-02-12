@@ -1,9 +1,9 @@
 
 const itemArray = [
-  { id: 1, completed: false, text: 'Wash clothes', notes: 'Remember to wash the shoes', date: '2019-12-10', category: 'Personal' },
-  { id: 2, completed: false, text: 'Take pets to the vet', notes: 'Ask to brush their teeth too', date: '', category: 'Personal'},
-  { id: 3, completed: true, text: 'Deposit money', notes: '', date: '', category: 'Personal' },
-  { id: 4, completed: true, text: 'Do shopping', notes: '', date: '', category: 'Personal' },
+  { id: 1, completed: false, text: 'Wash clothes', date: '2019-12-10', category: 'Personal' },
+  { id: 2, completed: false, text: 'Take pets to the vet', date: '', category: 'Personal'},
+  { id: 3, completed: true, text: 'Deposit money', date: '', category: 'Personal' },
+  { id: 4, completed: true, text: 'Do shopping', date: '', category: 'Personal' },
 ]
 
 const list = (state = itemArray, action) => {

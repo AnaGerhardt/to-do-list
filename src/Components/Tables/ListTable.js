@@ -47,48 +47,15 @@ const ListTable = ({list}) => {
         )}
         </ul>
 
-    
-        {/* <Table>
-            <thead>
-                <Tr>
-                <th>Tasks</th>
-                </Tr>
-            </thead>
-            <tbody>
-                {list.length > 0 ? (
-                list.map((item) => (    
-                    <Tr key={item.id}>
-                    <Td><input
-                            type="checkbox"
-                            style={{'marginRight': '10px'}} 
-                            onChange={ev => {
-                                item.completed = ev.currentTarget.checked
-                            }}
-                            onClick={() => dispatch({type: 'TOGGLE_ITEM'})}
-                        />
-                        <DetailForm 
-                            item={item}
-                        />
-                    </Td>
-                    </Tr>
-                ))
-                ) : (
-                    <Tr>
-                        <Td>No items yet.</Td>
-                    </Tr>
-                )}
-            </tbody>
-        </Table> */}
-
         <Row noGutters style={{'textAlign':'right', 'margin': '30px 0 10px 0'}}>
-            <Col style={{'float':'right'}}> 
+            <Col xs={4} sm={6}> 
                 <ActionButton
                     onClick={() => dispatch({type: 'SELECT_ALL'})}
                 >
                     Select All
             </ActionButton>
             </Col>
-            <Col>
+            <Col xs={8} sm={6}>
                 <ActionButton
                     onClick={() => dispatch({type: 'DELETE_ALL'})}
                 >

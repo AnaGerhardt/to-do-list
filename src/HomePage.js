@@ -27,22 +27,20 @@ const HomePage = (props) => {
     return (
     <>
         <Row noGutters>
-            <Col lg={2}>
+            <Col xs={2} lg={2}>
                 <FontAwesomeIcon icon={faUserCircle} size="3x" />
             </Col>      
             <Col align="left">
-                <p style={{'margin': '10px auto 5px 0'}}>
+                <p style={{'margin': '10px auto 5px 5px'}}>
                     <Link style={theme === 'light' ? {'':''} : {'color':'white'}} to="/login">Logout</Link>
                 </p>
             </Col>
-            <Col style={{'paddingTop':'5px'}}>
-                <div style={{'textAlign':'right'}}>
+            <Col style={{'paddingTop':'3px', 'textAlign':'right'}}>
                 <ActionButton
                     onClick={() => dispatch({type: 'TOGGLE_THEME'})}
                 >
                     {theme === 'light' ? 'Night Mode' : 'Light Mode'}
                 </ActionButton>
-                </div>
             </Col>
         </Row>   <br />
 
