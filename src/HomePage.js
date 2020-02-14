@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // import { userActions } from './Redux/Actions'
 import { Row, Col } from 'react-bootstrap'
 import VisibleList from './Containers/VisibleList'
-import { FilterCategoryMenu, FilterMenu } from './Components'
+import { Filters } from './Components'
 import { AddForm } from './Components/Forms/AddForm'
 import { Button, ActionButton } from './Styles/StyledComponents'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -42,13 +42,11 @@ const HomePage = (props) => {
                     {theme === 'light' ? 'Night Mode' : 'Light Mode'}
                 </ActionButton>
             </Col>
-        </Row>   <br />
+        </Row>   <br /><br />
 
         <Row align="right">
-            <Col>
-                <Button>
-                    <FontAwesomeIcon icon={faFilter} size="sm" style={{'marginRight':'8px'}} />Filters 
-                </Button>   
+            <Col>  
+                <Filters />
             </Col>
         </Row>
 

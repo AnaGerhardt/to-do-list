@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { handleChange, addItem } from '../../Redux/Actions'
 import { Modal, Form, Container, Row, Col } from 'react-bootstrap'
 import { ActionButton } from '../../Styles/StyledComponents'
-import Categories from '../Categories'
+import Categories from '../Filters/Categories'
 
 
 const AddForm = (props) => {

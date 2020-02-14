@@ -42,15 +42,3 @@ export const TaskButton = styled.button`
     cursor: pointer;
   }
 `
-
-export const Table = styled.table`
-   margin: 40px 0 40px 0; 
-` 
-
-export const Tr = styled.tr`
-    border-bottom: 1px solid #AAAA;
-` 
-
-export const Td = styled.td`
-    padding: 1vh 8vw 1vh 0vw;
-`  

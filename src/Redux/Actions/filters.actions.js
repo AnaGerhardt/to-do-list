@@ -10,8 +10,17 @@ export const selectAll = () => ({
     type: 'SELECT_ALL'
 })
 
+export const showFilters = () => ({
+    type: 'SHOW_FILTERS'
+})
+
 export const setVisibilityFilter = filter => ({
     type: 'SET_VISIBILITY_FILTER',
+    filter
+})
+
+export const setDateFilter = filter => ({
+    type: 'SET_DATE_FILTER',
     filter
 })
   

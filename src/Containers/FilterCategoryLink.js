@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { setCategoryFilter } from '../Redux/Actions'
-import FilterCategoryButtons from '../Components/FilterCategoryButtons'
+import FilterCategoryButtons from '../Components/Filters/FilterCategoryButtons'
 
 const mapStateToProps = (state, ownProps) => ({
   active: ownProps.filter === state.categoryFilter

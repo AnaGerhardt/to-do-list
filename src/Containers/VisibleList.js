@@ -16,6 +16,12 @@ const getVisibleList = (list, filter) => {
   }
 }
 
+const getDateList = (list, filter) => {
+  if (filter != null)
+  return list.filter(t => t.date === filter)
+  else return list
+}
+
 const getCategoryList = (list, filter) => {
   switch (filter) {
     case CategoryFilters.SHOW_ALL:
@@ -33,9 +39,15 @@ const getCategoryList = (list, filter) => {
   }
 }
 
+const filterList = (filters, list, state) => {
+  if (filters === true)
+    return getCategoryList(getVisibleList(getDateList(state.list, state.dateFilter), state.visibilityFilter), state.categoryFilter)
+  else
+    return list
+}
 
-const mapStateToProps = state => ({
-  list: getCategoryList(getVisibleList(state.list, state.visibilityFilter), state.categoryFilter)
+const mapStateToProps = (state) => ({
+  list: filterList(state.filters, state.list, state)
 })
 
 export default connect(

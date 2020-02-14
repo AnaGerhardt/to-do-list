@@ -1,35 +1,38 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { deleteItem, updateItem } from '../../Redux/Actions'
 import { Modal, Form, Row, Col } from 'react-bootstrap'
-import { TaskButton, ActionButton } from '../../Styles/StyledComponents'
+import { ActionButton } from '../../Styles/StyledComponents'
 //import { Item } from '../Tables/ListTable'
-import Categories from '../Categories'
+import Categories from '../Filters/Categories'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 // interface IProps {
 //     item: Item
 // }
 
-export const DetailForm = (props) => {
+export const EditForm = (props) => {
 
     const dispatch = useDispatch()
 
-    const initialForm = { id: undefined, completed: false, text: '', notes: '', date: '', category: undefined }
+    const initialForm = { id: '', completed: false, text: '', date: '', category: '' }
 
     const [editing, setEditing] = useState(false)
     const [currentItem, setCurrentItem] = useState(initialForm)
-    const item = useSelector(state => currentItem)
     const [show, setShow] = useState(false)
     const handleClose = () => { setShow(false); setEditing(false) }
     const handleShow = () => { setShow(true) }
+
+    const item = useSelector(state => currentItem)
 
     const editRow = () => {
         setEditing(true)
         setCurrentItem({ 
             id: props.item.id, 
-            completed: props.item.completed, 
+            completed: false,
             text: props.item.text,
-            notes: props.item.notes,
+            date: props.item.date,
             category: props.item.category 
         })
     }
@@ -42,14 +45,7 @@ export const DetailForm = (props) => {
 
     return  (
     <>
-        <TaskButton 
-            onClick={handleShow} 
-            style={{
-                textDecoration: props.item.completed ? 'line-through' : 'none'
-            }}
-        >
-            {props.item.text}
-        </TaskButton>
+        <FontAwesomeIcon icon={faEdit} onClick={handleShow} style={{"float":"right","marginTop":"3px"}} />
     
         <Modal centered show={show} onHide={handleClose}>
     
@@ -82,19 +78,9 @@ export const DetailForm = (props) => {
 
                     <Form.Group>
                         <Form.Control
-                            type="text"
-                            name="notes"
-                            placeholder={props.item.notes}
-                            value={item.notes}
-                            onChange={handleInputChange}
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Control
                             type="date"
                             name="date"
-                            //value={item.date}
+                            value={item.date}
                             onChange={handleInputChange}
                             style={{'width':'70%'}}
                         />
@@ -136,16 +122,8 @@ export const DetailForm = (props) => {
 
                     <Form.Group>
                         <Form.Control
-                            type="text"
-                            value={props.item.notes}
-                            readOnly
-                        />
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Control
                             type="date"
-                            //value={props.item.dateitem}
+                            value={props.item.date}
                             style={{'width':'60%'}}
                             readOnly
                         />
