@@ -56,7 +56,7 @@ const AddForm = (props) => {
                     }}
                 >
                     <Row>
-                        <Col lg={8}>
+                        <Col lg={8} md={8}>
                             <Form.Group>
                                 <Form.Control
                                     type="text" 
@@ -69,7 +69,7 @@ const AddForm = (props) => {
                     </Row>
 
                     <Row>
-                        <Col lg={8}>
+                        <Col lg={6} md={6}>
                             <Form.Group>
                                 <Form.Control
                                     type="date"
@@ -81,7 +81,7 @@ const AddForm = (props) => {
                     </Row>
 
                     <Row>
-                        <Col lg={8}>
+                        <Col lg={6} md={6}>
                             <Form.Group>
                                 <Form.Control 
                                     as="select"
