@@ -52,7 +52,7 @@ const ListTable = ({list}) => {
                 </li>
             ))
             ) : (
-                <h5 style={{'margin': '20px 0 20px 0'}}>No tasks to show.</h5>
+                <p style={{'margin': '20px 0 20px 0'}}>No tasks to show.</p>
         )}
         </ul>
 
