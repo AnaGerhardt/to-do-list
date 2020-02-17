@@ -5,8 +5,9 @@
     "allowJs": true,
     "checkJs": false,
     "jsx": "react",
-    "outDir": "./build",
+    "outDir": "./dist",
     "rootDir": "./src",
+    "sourceMap": true,
     "removeComments": true,
     "pretty": true,
     "skipLibCheck": true,
@@ -21,13 +22,14 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "isolatedModules": true
   },
   "include": [
     "./src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    ".vscode"
   ]
 }

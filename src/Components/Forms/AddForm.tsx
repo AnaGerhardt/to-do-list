@@ -6,18 +6,22 @@ import { Modal, Form, Container, Row, Col } from 'react-bootstrap'
 import { ActionButton } from '../../Styles/StyledComponents'
 import Categories from '../Filters/Categories'
 
+interface IProps {
+    theme: string
+}
 
-const AddForm = (props) => {
+
+const AddForm = (props: IProps) => {
 
     const dispatch = useDispatch() 
-    const item = useSelector(state => state.item)
+    const item = useSelector((state: any) => state.item)
     const [show, setShow] = useState(false);
     const { theme } = props
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         dispatch(handleChange(name, value))
     }
@@ -48,7 +52,7 @@ const AddForm = (props) => {
         <Modal.Body className={theme === 'light' ? 'modal-body' : 'modal-body modal-custom'}>
             <Container >
                 <Form
-                    onSubmit={(event) => {
+                    onSubmit={(event: React.FormEvent) => {
                         event.preventDefault()
                         if (!item.text) return
                         dispatch(addItem(item))
@@ -109,7 +113,7 @@ const AddForm = (props) => {
     )       
 }
 
-function mapState(state) {
+function mapState(state: any) {
     const { theme } = state
     return { theme }
 }

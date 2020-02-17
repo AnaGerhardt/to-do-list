@@ -6,23 +6,26 @@ import { Row, Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
-// export interface Item {
-//     id?: number
-//     completed?: boolean
-//     text?: string
-//     notes?: string
-//     date?: Date | string
-//     category?: string
-//     name?: string
-//     length?: number
-// }
+export interface Item {
+    id?: number
+    completed?: boolean
+    text?: string
+    date?: Date | string
+    category?: string
+    name?: string
+    length?: number
+}
 
-const ListTable = ({list}) => {
+interface IProps {
+    list: Item[]
+}
+
+const ListTable = (props: IProps) => {
 
     const dispatch = useDispatch()
-    //const list = useSelector((state: any) => state.list)
+    const { list } = props
 
-    const handleTaskClick = (item) => {
+    const handleTaskClick = (item: Item) => {
         dispatch({type: 'TOGGLE_ITEM'})
         item.completed = !item.completed
     }
@@ -39,7 +42,7 @@ const ListTable = ({list}) => {
                         <div
                             className={(item.completed ? 'checkmark' : 'checkbox-round')} 
                             style={{'display':'inline-block'}}  
-                            value={item.completed}
+                            // value={item.completed}
                             onClick={() => handleTaskClick(item)}
                         >
                             {item.completed ? <FontAwesomeIcon icon={faCheck} /> : ''}

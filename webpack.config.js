@@ -2,10 +2,12 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
-    mode: 'development',
-    resolve: {
-        extensions: ['.js', '.jsx']
+    output: {
+      filename: "main.js"
     },
+    mode: 'development',
+    watch: true,
+    devtool: "cheap-module-source-map",
     module: {
         rules: [
             { test: /\.jsx?$/, loader: ['babel-loader', 'eslint-loader'] },
@@ -28,8 +30,11 @@ module.exports = {
                   loader: 'sass-loader'
                 }]
             },
-            { test: /\.tsx$/, use: 'ts-loader' }
+            { test: /\.tsx?$/, loader: 'ts-loader', exclude: /node_modules/ }
         ]
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     plugins: [new HtmlWebpackPlugin({
         template: './src/index.html'
