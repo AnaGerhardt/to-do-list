@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { userActions } from './Redux/Actions'
-import { Form } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 import { Button, MenuButton } from './Styles/StyledComponents'
 
 const RegisterPage = (props) => {
@@ -13,7 +13,7 @@ const RegisterPage = (props) => {
     }
 
     const [registerUser, setRegisterUser] = useState(userArray)
-    const { registering } = props
+    const { registering, theme } = props
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -46,37 +46,56 @@ const RegisterPage = (props) => {
 
     return (
         <>
-            <h5 style={{'textAlign':'center'}}>Register</h5>
-
-            <Form name="form" style={{'marginTop':'30px'}}onSubmit={handleSubmit}>
-                <Form.Group className={(submitted && !firstName ? 'has-error' : '')}>
-                    <Form.Label htmlFor="firstName">First Name</Form.Label>
-                    <Form.Control type="text" name="firstName" value={firstName} onChange={handleChange} />
-                    {submitted && !firstName &&
-                        <div className="help-block">First Name is required</div>
-                    }
-                </Form.Group>
-                <Form.Group className={(submitted && !lastName ? ' has-error' : '')}>
-                    <Form.Label htmlFor="lastName">Last Name</Form.Label>
-                    <Form.Control type="text" name="lastName" value={lastName} onChange={handleChange} />
-                    {submitted && !lastName &&
-                        <div className="help-block">Last Name is required</div>
-                    }
-                </Form.Group>
-                <Form.Group className={(submitted && !username ? ' has-error' : '')}>
-                    <Form.Label htmlFor="username">Username</Form.Label>
-                    <Form.Control type="text" name="username" value={username} onChange={handleChange} />
-                    {submitted && !username &&
-                        <div className="help-block">Username is required</div>
-                    }
-                </Form.Group>
-                <Form.Group className={(submitted && !password ? ' has-error' : '')}>
-                    <Form.Label htmlFor="password">Password</Form.Label>
-                    <Form.Control type="password" name="password" value={password} onChange={handleChange} />
-                    {submitted && !password &&
-                        <div className="help-block">Password is required</div>
-                    }
-                </Form.Group>
+        <div style={{'textAlign':'center'}}>
+            <Form 
+                name="form" 
+                style={{'marginTop':'20px', 'textAlign':'left', 'display':'inline-block'}} 
+                onSubmit={handleSubmit}
+            >
+                <Row>
+                    <Col>
+                        <Form.Group className={(submitted && !firstName ? 'has-error' : '')}>
+                            <Form.Label htmlFor="firstName">First Name</Form.Label>
+                            <Form.Control type="text" name="firstName" value={firstName} onChange={handleChange} />
+                            {submitted && !firstName &&
+                                <div className="help-block">First Name is required</div>
+                            }
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Form.Group className={(submitted && !lastName ? ' has-error' : '')}>
+                            <Form.Label htmlFor="lastName">Last Name</Form.Label>
+                            <Form.Control type="text" name="lastName" value={lastName} onChange={handleChange} />
+                            {submitted && !lastName &&
+                                <div className="help-block">Last Name is required</div>
+                            }
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Form.Group className={(submitted && !username ? ' has-error' : '')}>
+                            <Form.Label htmlFor="username">Username</Form.Label>
+                            <Form.Control type="text" name="username" value={username} onChange={handleChange} />
+                            {submitted && !username &&
+                                <div className="help-block">Username is required</div>
+                            }
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Form.Group className={(submitted && !password ? ' has-error' : '')}>
+                            <Form.Label htmlFor="password">Password</Form.Label>
+                            <Form.Control type="password" name="password" value={password} onChange={handleChange} />
+                            {submitted && !password &&
+                                <div className="help-block">Password is required</div>
+                            }
+                        </Form.Group>
+                    </Col>
+                </Row>
                 <Form.Group>
                     <Button>Register</Button>
                     {registering && 
@@ -87,6 +106,7 @@ const RegisterPage = (props) => {
                     </Link>
                 </Form.Group>
             </Form>
+        </div>
         </>
     );
 }

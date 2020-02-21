@@ -6,7 +6,6 @@ module.exports = {
       filename: "main.js"
     },
     mode: 'development',
-    watch: true,
     devtool: "cheap-module-source-map",
     module: {
         rules: [
