@@ -10,7 +10,7 @@ export interface Item {
     id?: number
     completed?: boolean
     text?: string
-    date?: Date | string
+    date?: string
     category?: string
     name?: string
     length?: number

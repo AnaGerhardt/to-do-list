@@ -6,7 +6,7 @@
     "checkJs": false,
     "jsx": "react",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "sourceMap": true,
     "removeComments": true,
     "pretty": true,

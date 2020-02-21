@@ -14,9 +14,10 @@ interface IProps {
 const AddForm = (props: IProps) => {
 
     const dispatch = useDispatch() 
+    const { theme } = props
+    const style: React.CSSProperties = {'paddingTop':'10px', 'paddingBottom':'10px','fontWeight':'lighter', 'width':'100%'}
     const item = useSelector((state: any) => state.item)
     const [show, setShow] = useState(false);
-    const { theme } = props
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -32,7 +33,7 @@ const AddForm = (props: IProps) => {
         <Row style={{'textAlign':'center'}}>
             <Col>
                 <ActionButton 
-                    style={{'paddingTop':'10px', 'paddingBottom':'10px','fontWeight':'300', 'width':'100%'}} 
+                    style={style} 
                     onClick={handleShow}
                 >
                     + ADD A NEW TASK
