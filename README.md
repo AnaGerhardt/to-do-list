@@ -2,7 +2,7 @@
 
 # Introduction
 
-Hi! This project was created to study front-end development with React, from basic to some more advanced features. 
+This project was created to study front-end development with React and to explore some technologies.
 
 ## Stack
 
